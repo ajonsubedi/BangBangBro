@@ -1,0 +1,76 @@
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Project.exe
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Project.pdb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.dll
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.xml
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\obj\x86\Debug\Project.csprojResolveAssemblyReference.cache
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\obj\x86\Debug\Project.csproj.CoreCompileInputs.cache
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\obj\x86\Debug\Project.exe
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\obj\x86\Debug\Project.pdb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\obj\x86\Debug\Project.exe
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\obj\x86\Debug\Project.pdb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Background_Game.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Project.exe
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Project.pdb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.dll
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.xml
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\obj\x86\Debug\Project.csprojResolveAssemblyReference.cache
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\mannetjeJump.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\weirdLeft.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\weirdRight.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\background.wma
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\background.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\jump.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\dirt.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grass.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassLeft.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassRight.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassUp.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\weirdLeft.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\weirdRight.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\boy\weirdLeft.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\boy\weirdRight.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\soundTracks\background.wma
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\soundTracks\background.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\soundTracks\jump.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\tileSheet\dirt.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\tileSheet\grass.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\tileSheet\grassLeft.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\tileSheet\grassRight.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\tileSheet\grassUp.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\background.wma
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\background.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\jump.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\dirt.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grass.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassLeft.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassRight.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassUp.xnb

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/boy/weirdLeft.png</File>
+    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/boy/weirdRight.png</File>
+    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/soundTracks/background.mp3</File>
+    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/soundTracks/jump.wav</File>
+    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/dirt.png</File>
+    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/grass.png</File>
+    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/grassLeft.png</File>
+    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/grassRight.png</File>
+    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/grassUp.png</File>
+  </SourceFiles>
+</SourceFileCollection>
