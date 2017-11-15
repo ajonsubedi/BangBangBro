@@ -14,7 +14,7 @@ namespace Project
     class Hero : ICollide
     {
 
-        
+
         Matrix m;
         public Vector2 _positie;
         public Texture2D _texture { get; set; }
@@ -23,10 +23,13 @@ namespace Project
         private Texture2D jump;
         private Keys GoRight;
         private Keys GoLeft;
-        private Rectangle _viewRect;
-        public Rectangle CollisionRect;
+        public Rectangle _viewRect;
         public bool hasJumped;
-        private Animation _animation;
+        public Animation _animation;
+        public float scale { get; set; }
+
+        //variabelen voor collision detection
+        public Rectangle CollisionRectHero;
 
         //private Animation _animation
         public Vector2 veloCityX = new Vector2(10, 0);
@@ -34,16 +37,16 @@ namespace Project
         public Controls _control { get; set; }
 
         public bool isMoving = false;
-        public Hero(Texture2D texture, Vector2 positie, Texture2D AILeft, Texture2D AIRight, Keys GoRightIn, Keys GoLeftIn)
+        public Hero(Texture2D texture, Vector2 positie, Texture2D heroLeft, Texture2D heroRight, Keys GoRightIn, Keys GoLeftIn)
         {
             m = new Matrix();
             _texture = texture;
             _positie = positie; //new Vector2(0, 300);
             _viewRect = new Rectangle(0, 0, 48, 56);
-            CollisionRect = new Rectangle((int)_positie.X, (int)_positie.Y, 64, 205);
-            left = AILeft;
-            right = AIRight;
-            GoLeft = GoLeftIn;  
+            CollisionRectHero = new Rectangle((int)_positie.X, (int)_positie.Y, 48, 56);
+            left = heroLeft;
+            right = heroRight;
+            GoLeft = GoLeftIn;
             GoRight = GoRightIn;
             hasJumped = true;
 
@@ -96,20 +99,20 @@ namespace Project
                 soundEffect.Play();
             }
 
-            if(hasJumped == false)
+            if (hasJumped == false)
             {
                 veloCityY.Y = 0f;
             }
-            if(_positie.Y + _texture.Height >= 366.5/*STARTPOSITIE!!!!*/)
+            if (_positie.Y + _texture.Height >= 366.5/*STARTPOSITIE!!!!*/)
             {
                 hasJumped = false;
             }
 
-            
-            CollisionRect.X = (int)_positie.X;
-            CollisionRect.Y = (int)_positie.Y;
+
+            CollisionRectHero.X = (int)_positie.X;
+            CollisionRectHero.Y = (int)_positie.Y;
         }
-        Rectangle _viewRectangle = new Rectangle(0, 0, 95, 295);
+        Rectangle _viewRectangle = new Rectangle(0, 0, 48, 56);
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
@@ -118,8 +121,15 @@ namespace Project
 
         public Rectangle GetCollisionRectangle()
         {
-            return CollisionRect;
+            return CollisionRectHero;
         }
+       /* public bool RectangleCollision(Tile otherSprite)
+        {
+            if (this._viewRect.X + this._texture.Width * this.scale * hitboxScale / 2 < otherSprite.rectangle.X - otherSprite._texture.Width * otherSprite.scale / 2) return false;
+            if (this._viewRect.Y + this._texture.Height * this.scale * hitboxScale / 2 < otherSprite.rectangle.Y - otherSprite._texture.Height * otherSprite.scale / 2) return false;
+            if (this._viewRect.X - this._texture.Width * this.scale * hitboxScale / 2 > otherSprite.rectangle.X + otherSprite._texture.Width * otherSprite.scale / 2) return false;
+            if (this._viewRect.Y - this._texture.Height * this.scale * hitboxScale / 2 > otherSprite.rectangle.Y + otherSprite._texture.Height * otherSprite.scale / 2) return false;
+            return true;
+        }*/
     }
-
 }

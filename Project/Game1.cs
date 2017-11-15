@@ -15,7 +15,7 @@ namespace Project
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D herotextureRight, heroTextureLeft/*, backgroundTexture, farBuildingTexture, buildingTexture, foreBuildingTexture*/;
+        Texture2D herotextureRight, heroTextureLeft;
         Hero _mannetjeLeft, _mannetjeRight, _mannetje2Left, _mannetje2Right;
         List<ICollide> collideObjecten;
         Level level;
@@ -100,13 +100,21 @@ namespace Project
             Texture2D grassUpTexture = Content.Load<Texture2D>("tileSheet/grassUp");
 
             grass = new Tile(grassTexture, new Vector2(0, 0));
+            grassRight = new Tile(grassRightTexture, new Vector2(0, 0));
+            grassLeft = new Tile(grassLeftTexture, new Vector2(0, 0));
+            grassUp = new Tile(grassUpTexture, new Vector2(0, 0));
 
 
-           collideObjecten = new List<ICollide>();
+           /*collideObjecten = new List<ICollide>();
             collideObjecten.Add(_mannetje2Left);
             collideObjecten.Add(_mannetjeLeft);
             collideObjecten.Add(_mannetje2Right);
             collideObjecten.Add(_mannetjeRight);
+            collideObjecten.Add(grass);
+            collideObjecten.Add(grassRight);
+            collideObjecten.Add(grassLeft);
+            collideObjecten.Add(grassUp);*/
+
 
 
             //LEVELS
@@ -129,10 +137,7 @@ namespace Project
             // TODO: Unload any non ContentManager content here
             
         }
-        private bool CheckCollision()
-        {
-            return false;
-        }
+      
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -152,10 +157,17 @@ namespace Project
 
             // TODO: Add your update logic here
 
-            if (_mannetjeRight.CollisionRect.Intersects(_mannetje2Right.CollisionRect) && _mannetjeLeft.CollisionRect.Intersects(_mannetje2Left.CollisionRect))
+            if (_mannetjeLeft.CollisionRectHero.Intersects(_mannetje2Right.CollisionRectHero))
             {
-                System.Console.WriteLine("AAAA");
+
+                Console.WriteLine("A collision has been detected");
             }
+            else
+           
+           /*   if (_mannetjeRight.CollisionRect.Intersects(_mannetje2Left.CollisionRect))
+            {
+                System.Console.WriteLine("BBBB");
+            }*/
             if (_mannetjeRight.isMoving)
             {
                 camPos += _mannetjeRight.veloCityX;
@@ -214,13 +226,5 @@ namespace Project
 
             base.Draw(gameTime);
         }
-    }
-}
-static class RectangleHelper
-{
-    const int penetrationMargin = 5;
-    public static bool isOnTopOf(this Rectangle r1, Rectangle r2)
-    {
-        return (r1.Bottom >= r2.Top - penetrationMargin && r1.Bottom <= r2.Top + 1 && r1.Right >= r2.Left + 5 && r1.Left <= r2.Right - 5);
     }
 }
