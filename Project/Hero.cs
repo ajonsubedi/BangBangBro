@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Project.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace Project
             m = new Matrix();
             _texture = texture;
             _positie = positie; //new Vector2(0, 300);
-            _viewRect = new Rectangle(0, 0, 48, 56);
+            _viewRect = new Rectangle((int)_positie.X, (int)_positie.Y, 48, 56);
             CollisionRectHero = new Rectangle((int)_positie.X, (int)_positie.Y, 48, 56);
             left = heroLeft;
             right = heroRight;
@@ -56,7 +57,6 @@ namespace Project
             _animation.AddFrame(new Rectangle(96, 0, 48, 56));
             _animation.aantalBewegingenPerSec = 8;
 
-            // mannetje = leftRight;
         }
         public void Update(GameTime gameTime, SoundEffect soundEffect)
         {
@@ -90,6 +90,9 @@ namespace Project
             else veloCityX.X = 0f;
 
             //JUMP   (https://www.youtube.com/watch?v=ZLxIShw-7ac)
+
+            if (veloCityY.Y < 10)
+                veloCityY.Y += 0.4f;
             if (_control.jump && hasJumped == false)
             {
                 _positie.Y -= 60f;//SPEED & HEIGHT
@@ -103,33 +106,57 @@ namespace Project
             {
                 veloCityY.Y = 0f;
             }
-            if (_positie.Y + _texture.Height >= 366.5/*STARTPOSITIE!!!!*/)
+            if (_positie.Y + _texture.Height >= 468/*GRAVITY!!!!*/)
             {
                 hasJumped = false;
             }
 
 
-            CollisionRectHero.X = (int)_positie.X;
-            CollisionRectHero.Y = (int)_positie.Y;
+          //  CollisionRectHero.X = (int)_positie.X;
+          //  CollisionRectHero.Y = (int)_positie.Y;
         }
-        Rectangle _viewRectangle = new Rectangle(0, 0, 48, 56);
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_texture, _positie, _animation.currentFrame.SourceRectangle, Color.White);
         }
 
+
+        //COLLISION DETECTIE
+        public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        {
+            if (_viewRect.TouchTopOf(newRectangle))
+            {
+                _viewRect.Y = newRectangle.Y - _viewRect.Height;
+                veloCityY.Y = 0f;
+                hasJumped = false;
+            }
+
+            if (_viewRect.TouchLeftOf(newRectangle))
+            {
+                _positie.X = newRectangle.X - _viewRect.Width - 2;
+            }
+
+            if (_viewRect.TouchRightOf(newRectangle))
+            {
+                _positie.X = newRectangle.X + newRectangle.Width + 2;
+
+            }
+            if (_viewRect.TouchBottomOf(newRectangle))
+            {
+                veloCityY.Y = 1f;
+            }
+
+            if (_positie.X < 0 ) _positie.X = 0;
+            if (_positie.X > xOffset - _viewRect.Width) _positie.X = xOffset - _viewRect.Width;
+            if (_positie.Y < 0) veloCityY.Y = 1f;
+            if (_positie.Y > yOffset - _viewRect.Height) _positie.Y = yOffset - _viewRect.Height; 
+        }
+
+
         public Rectangle GetCollisionRectangle()
         {
             return CollisionRectHero;
         }
-       /* public bool RectangleCollision(Tile otherSprite)
-        {
-            if (this._viewRect.X + this._texture.Width * this.scale * hitboxScale / 2 < otherSprite.rectangle.X - otherSprite._texture.Width * otherSprite.scale / 2) return false;
-            if (this._viewRect.Y + this._texture.Height * this.scale * hitboxScale / 2 < otherSprite.rectangle.Y - otherSprite._texture.Height * otherSprite.scale / 2) return false;
-            if (this._viewRect.X - this._texture.Width * this.scale * hitboxScale / 2 > otherSprite.rectangle.X + otherSprite._texture.Width * otherSprite.scale / 2) return false;
-            if (this._viewRect.Y - this._texture.Height * this.scale * hitboxScale / 2 > otherSprite.rectangle.Y + otherSprite._texture.Height * otherSprite.scale / 2) return false;
-            return true;
-        }*/
     }
 }

@@ -19,7 +19,7 @@ namespace Project
         Hero _mannetjeLeft, _mannetjeRight, _mannetje2Left, _mannetje2Right;
         List<ICollide> collideObjecten;
         Level level;
-        Tile grass, dirt, grassLeft, grassRight, grassUp;
+        Tile grass, dirt;
         Song backgroundMusic;
         SoundEffect soundEffect;
 
@@ -39,7 +39,9 @@ namespace Project
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-          //  graphics.IsFullScreen = true;
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 480;
+            //  graphics.IsFullScreen = true;
             System.Console.WriteLine(graphics.PreferredBackBufferWidth.ToString());
             Content.RootDirectory = "Content";
             TargetElapsedTime = TimeSpan.FromSeconds(1/20.0);
@@ -95,17 +97,13 @@ namespace Project
             //BLOKJE
             Texture2D grassTexture = Content.Load<Texture2D>("tileSheet/grass");
             Texture2D dirtTexture = Content.Load<Texture2D>("tileSheet/dirt");
-            Texture2D grassLeftTexture = Content.Load<Texture2D>("tileSheet/grassLeft");
-            Texture2D grassRightTexture = Content.Load<Texture2D>("tileSheet/grassRight");
-            Texture2D grassUpTexture = Content.Load<Texture2D>("tileSheet/grassUp");
+
 
             grass = new Tile(grassTexture, new Vector2(0, 0));
-            grassRight = new Tile(grassRightTexture, new Vector2(0, 0));
-            grassLeft = new Tile(grassLeftTexture, new Vector2(0, 0));
-            grassUp = new Tile(grassUpTexture, new Vector2(0, 0));
 
 
-           /*collideObjecten = new List<ICollide>();
+
+           /* collideObjecten = new List<ICollide>();
             collideObjecten.Add(_mannetje2Left);
             collideObjecten.Add(_mannetjeLeft);
             collideObjecten.Add(_mannetje2Right);
@@ -121,10 +119,7 @@ namespace Project
             level = new Level();
             level._grassTexture = grassTexture;
             level._dirtTexture = dirtTexture;
-            level._grassLeftTexture = grassLeftTexture;
-            level._grassRightTexture = grassRightTexture;
-            level._grassUpTexture = grassUpTexture;
-            level.CreateWorld();
+            level.CreateWorld(30);
         // TODO: use this.Content to load your game content here
         }
 
@@ -157,6 +152,10 @@ namespace Project
 
             // TODO: Add your update logic here
 
+
+
+                _mannetjeRight.Collision(grass.rectangle, level.Width, level.Height);
+            
             if (_mannetjeLeft.CollisionRectHero.Intersects(_mannetje2Right.CollisionRectHero))
             {
 

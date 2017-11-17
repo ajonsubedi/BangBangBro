@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Project
         public Rectangle rectangle;
         public Rectangle CollisionRectTile;
         public float scale { get; set; }
+        public static ContentManager Content { get; set; }
         public Tile(Texture2D texture, Vector2 pos)
         {
             _texture = texture;
@@ -34,6 +36,19 @@ namespace Project
         public Rectangle GetCollisionRectangle()
         {
             return CollisionRectTile;
+        }
+    }
+
+    class CollisionTiles : Tile
+    {
+        private int number;
+
+       
+
+        public CollisionTiles(Texture2D texture, Vector2 pos, int i, Rectangle newRectangle) : base(texture, pos)
+        {
+            texture = Content.Load<Texture2D>("grass" + i);
+            this.rectangle = newRectangle;
         }
     }
 }
