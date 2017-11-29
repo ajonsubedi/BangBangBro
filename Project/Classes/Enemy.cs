@@ -11,26 +11,15 @@ using System.Threading.Tasks;
 
 namespace Project
 {
-    class Hero
+    class Enemy
     {
         public Vector2 _position = new Vector2(64, 200), _velocity;
         Rectangle _viewRect;
         Texture2D _texture;
         private Texture2D left;
         private Texture2D right;
-        private Texture2D jump;
-        public bool hasJumped = false;
-        public Controls _control { get; set; }
         public Animation _animation;
         public bool isMoving = false;
-        Matrix m;
-
-
-
-
-
-
-
 
         public Vector2 Position
         {
@@ -38,83 +27,64 @@ namespace Project
             set { _position = value; }
         }
 
-        public Hero(Texture2D texture, Vector2 positie, Texture2D heroLeft, Texture2D heroRight)
+        public Enemy(Texture2D texture, Vector2 positie, Texture2D heroLeft, Texture2D heroRight)
         {
-            m = new Matrix();
             _texture = texture;
             _position = positie;
-            _viewRect = new Rectangle(0, 0, 48, 56);
+            _viewRect = new Rectangle(0, 0, 43, 70);
             left = heroLeft;
             right = heroRight;
-            hasJumped = true;
             _animation = new Animation();
-            _animation.AddFrame(new Rectangle(0, 0, 48, 56));
-            _animation.AddFrame(new Rectangle(48, 0, 48, 56));
-            _animation.AddFrame(new Rectangle(96, 0, 48, 56));
+            _animation.AddFrame(new Rectangle(0, 0, 43, 70));
+            _animation.AddFrame(new Rectangle(43, 0, 43, 70));
+            _animation.AddFrame(new Rectangle(86, 0, 43, 70));
+            _animation.AddFrame(new Rectangle(129, 0, 43, 70));
+            _animation.AddFrame(new Rectangle(172, 0, 43, 70));
+            _animation.AddFrame(new Rectangle(215, 0, 43, 70));
+            _animation.AddFrame(new Rectangle(258, 0, 43, 70));
             _animation.aantalBewegingenPerSec = 8;
         }
 
-
+        
 
         public void Update(GameTime gameTime, SoundEffect soundEffect)
         {
             _position += _velocity;
-            Input(gameTime, soundEffect);
-
             _viewRect = new Rectangle((int)_position.X, (int)_position.Y, 48, 56);
+
+
+            _viewRect.X += 10;
+            _animation.Update(gameTime);
+            if (_viewRect.X > 100)
+                _viewRect.X = 0;
+            isMoving = true;
+
+
+            _position.X += 1;
+
             if (_velocity.Y < 10)
                 _velocity.Y += 0.4f;
+
+
         }
 
 
-        private void Input(GameTime gameTime, SoundEffect soundEffect)
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
-            {
-                _velocity.X = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
+        
 
-            }
-
-            else if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                _velocity.X = -(float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
-            else _velocity.X = 0f;
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Up) && hasJumped == false)
-            {
-                _position.Y -= 5f;
-                _velocity.Y = -9f;
-                hasJumped = true;
-                soundEffect.Play();
-            }
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
-            {
-                _viewRect.X += 48;
-                _animation.Update(gameTime);
-                if (_viewRect.X > 140)
-                {
-                    _viewRect.X = 0;
-                }
-                isMoving = true;
-            }
-
-        }
-
-        public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+       public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (_viewRect.TouchTopOf(newRectangle))
             {
                 _viewRect.Y = newRectangle.Y - _viewRect.Height;
                 _velocity.Y = 0f;
-                hasJumped = false;
             }
             if (_viewRect.TouchLeftOf(newRectangle))
             {
-                _position.X = newRectangle.X - _viewRect.Width;
+                _position.X -= -1;
             }
             if (_viewRect.TouchRightOf(newRectangle))
             {
-                _position.X = newRectangle.X + 17;
+                _position.X  += 1;
             }
             if (_viewRect.TouchBottomOf(newRectangle))
             {

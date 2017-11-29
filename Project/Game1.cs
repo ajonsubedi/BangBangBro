@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Project;
 using System;
 
 namespace Project
@@ -15,13 +16,15 @@ namespace Project
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Level map;
-        Hero heroRight, heroLeft;
+        Hero heroRight, heroLeft;   
         Texture2D heroRightTexture, heroLeftTexture;
+        Texture2D enemy1RightTexture, enemy1LeftTexture;
         Song backgroundMusic;
         SoundEffect soundEffect;
         Camerda2D camera;
         Viewport viewport;
         Vector2 camPos = new Vector2();
+        Enemy enemy1Right, enemy1Left;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -69,6 +72,14 @@ namespace Project
             heroLeftTexture = Content.Load<Texture2D>("boy/heroLeft");
             heroLeft = new Hero(heroLeftTexture, new Vector2(0, 0), heroLeftTexture, heroRightTexture);
             heroLeft._control = new ControlsArrows();
+
+
+            //ENEMY
+            enemy1RightTexture = Content.Load<Texture2D>("enemy/enemy1Right");
+            enemy1Right = new Enemy(enemy1RightTexture, new Vector2(0, 0), enemy1LeftTexture, enemy1RightTexture);
+
+            enemy1LeftTexture = Content.Load<Texture2D>("enemy/enemy1left");
+            enemy1Left = new Enemy(enemy1LeftTexture, new Vector2(0, 0), enemy1LeftTexture, enemy1RightTexture);
 
 
             map.Generate(new int[,]
@@ -119,15 +130,18 @@ namespace Project
 
             heroRight.Update(gameTime, soundEffect);
             heroLeft.Update(gameTime, soundEffect);
+            enemy1Right.Update(gameTime, soundEffect);
             foreach (CollisionTiles tile in map.CollisionTiles)
             {
                 heroRight.Collision(tile.Rectangle, map.Width, map.Height);
+                enemy1Right.Collision(tile.Rectangle, map.Width, map.Height);
                 camera.Update(heroRight._position, map.Width, map.Height);
 
             }
             foreach (CollisionTiles tile in map.CollisionTiles)
             {
                 heroLeft.Collision(tile.Rectangle, map.Width, map.Height);
+                enemy1Left.Collision(tile.Rectangle, map.Width, map.Height);
                 camera.Update(heroLeft._position, map.Width, map.Height);
 
             }
@@ -170,6 +184,9 @@ namespace Project
                 map.Draw(spriteBatch);
 
             }
+            enemy1Right.Draw(spriteBatch);
+            enemy1Left.Draw(spriteBatch);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

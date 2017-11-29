@@ -48,6 +48,7 @@
     <Compile Include="Classes\AnimationFrame.cs" />
     <Compile Include="Classes\Camera2D.cs" />
     <Compile Include="Classes\Controls.cs" />
+    <Compile Include="Classes\Enemy.cs" />
     <Compile Include="Classes\RectangleHelper.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Hero.cs" />

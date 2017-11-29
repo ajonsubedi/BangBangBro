@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/tile1.png</SourceFile>
-  <SourceTime>2017-11-17T23:37:11.6566166+01:00</SourceTime>
-  <DestFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bin/Windows/tileSheet/tile1.xnb</DestFile>
-  <DestTime>2017-11-29T11:16:53.5706031+01:00</DestTime>
+  <SourceFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/enemy/enemy1Left.png</SourceFile>
+  <SourceTime>2017-11-29T11:14:30.2149733+01:00</SourceTime>
+  <DestFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bin/Windows/enemy/enemy1Left.xnb</DestFile>
+  <DestTime>2017-11-29T11:16:51.9991188+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-09-27T03:32:24+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
