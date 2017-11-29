@@ -4,14 +4,11 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/boy/weirdLeft.png</File>
-    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/boy/weirdRight.png</File>
-    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/soundTracks/background.mp3</File>
-    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/soundTracks/jump.wav</File>
-    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/dirt.png</File>
-    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/grass.png</File>
-    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/grassLeft.png</File>
-    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/grassRight.png</File>
-    <File>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/grassUp.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/boy/heroLeft.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/boy/heroRight.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/soundTracks/background.mp3</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/soundTracks/jump.wav</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/tile1.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/tile2.png</File>
   </SourceFiles>
 </SourceFileCollection>

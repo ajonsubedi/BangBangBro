@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/grassUp.png</SourceFile>
-  <SourceTime>2017-11-07T23:43:59.9573525+01:00</SourceTime>
-  <DestFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bin/Windows/Content/tileSheet/grassUp.xnb</DestFile>
-  <DestTime>2017-11-07T23:49:38.7335019+01:00</DestTime>
+  <SourceFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/tile2.png</SourceFile>
+  <SourceTime>2017-11-17T23:37:11.6461052+01:00</SourceTime>
+  <DestFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bin/Windows/Content/tileSheet/tile2.xnb</DestFile>
+  <DestTime>2017-11-29T10:47:01.8455245+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-09-27T03:32:24+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

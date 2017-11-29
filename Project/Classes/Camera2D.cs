@@ -10,29 +10,32 @@ namespace Project
 {
     class Camerda2D
     {
+        public Matrix Transform { get; set; }
         private readonly Viewport _viewport;
+        public Vector2 centre;
         public Camerda2D(Viewport viewport)
         {
             _viewport = viewport;
-            Origin = new Vector2(viewport.Width / 4f, viewport.Height / 4f);
-            Positie = Vector2.Zero;
+
         }
 
-        public Vector2 ViewportCenter
+        public void Update(Vector2 positie, int xOffset, int yOffset)
         {
-            get
-            {
-                return new Vector2(_viewport.Width * -0.5f, _viewport.Height * -0.5f);
-            }
+            if (positie.X < _viewport.Width / 2)
+                centre.X = _viewport.Width / 2;
+            else if (positie.X > xOffset - (_viewport.Width / 2))
+                centre.X = xOffset - (_viewport.Width / 2);
+            else centre.X = positie.X;
+
+            if (positie.Y < _viewport.Height / 2)
+                centre.Y = _viewport.Height / 2;
+            else if (positie.Y > yOffset - (_viewport.Height / 2))
+                centre.Y = yOffset - (_viewport.Height / 2);
+            else centre.Y = positie.Y;
+
+            Transform = Matrix.CreateTranslation(new Vector3(-centre.X + (_viewport.Width / 2),
+                                                            -centre.Y + (_viewport.Height / 2), 0));
         }
 
-        public Vector2 Positie { get; set; }
-        public Vector2 Origin { get; set; }
-
-        public Matrix GetViewMatrix()
-        {
-            Matrix m = Matrix.CreateTranslation(new Vector3(-Positie, 0));
-            return m;
-        }
     }
 }

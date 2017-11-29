@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
-using System.Collections.Generic;
 
 namespace Project
 {
@@ -15,34 +14,20 @@ namespace Project
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D herotextureRight, heroTextureLeft;
-        Hero _mannetjeLeft, _mannetjeRight, _mannetje2Left, _mannetje2Right;
-        List<ICollide> collideObjecten;
-        Level level;
-        Tile grass, dirt, grassLeft, grassRight, grassUp;
+        Level map;
+        Hero heroRight, heroLeft;
+        Texture2D heroRightTexture, heroLeftTexture;
         Song backgroundMusic;
         SoundEffect soundEffect;
-
-        /*
-        Point boyFrameSize = new Point(48, 56);
-        Point tileFrameSize = new Point(30, 30);
-        int boyCollisionRectOffset = 10;
-        int tileCollisionRectOffset = 10;
-
-        protected bool Collide()
-        {
-            Rectangle boyRect = new Rectangle((int)boyRect)
-        }*/
-        //Camerda2D camera;
-        //Viewport viewport;
-
+        Camerda2D camera;
+        Viewport viewport;
+        Vector2 camPos = new Vector2();
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-          //  graphics.IsFullScreen = true;
-            System.Console.WriteLine(graphics.PreferredBackBufferWidth.ToString());
             Content.RootDirectory = "Content";
-            TargetElapsedTime = TimeSpan.FromSeconds(1/20.0);
+            System.Console.WriteLine(graphics.PreferredBackBufferWidth.ToString());
+
         }
 
         /// <summary>
@@ -54,7 +39,8 @@ namespace Project
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            //camera = new Camerda2D(GraphicsDevice.Viewport);
+            camera = new Camerda2D(GraphicsDevice.Viewport);
+            map = new Level();
             base.Initialize();
         }
 
@@ -62,70 +48,50 @@ namespace Project
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
-        ///             
-        /// 
-        public int vector = 0;
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Tile.Content = Content;
+
 
             //SOUNDTRACKS
             soundEffect = Content.Load<SoundEffect>("soundTracks/jump");
             backgroundMusic = Content.Load<Song>("soundTracks/background");
             MediaPlayer.Play(backgroundMusic);
 
-            //MANNETJES
-            heroTextureLeft = Content.Load<Texture2D>("boy/weirdLeft");
-            herotextureRight = Content.Load<Texture2D>("boy/weirdRight");
 
-            _mannetjeLeft = new Hero(heroTextureLeft, new Vector2(0, 0), heroTextureLeft, herotextureRight, Keys.Right, Keys.Left);
-            _mannetjeLeft._control = new ControlsArrows();
+            //HERO
+            heroRightTexture = Content.Load<Texture2D>("boy/heroRight");
+            heroRight = new Hero(heroRightTexture, new Vector2(0, 0), heroLeftTexture, heroRightTexture);
+            heroRight._control = new ControlsArrows();
 
-            _mannetjeRight = new Hero(herotextureRight, new Vector2(0, 0),heroTextureLeft, herotextureRight, Keys.Right, Keys.Left);
-            _mannetjeRight._control = new ControlsArrows();
-
-            //TEST
-            _mannetje2Left = new Hero(heroTextureLeft, new Vector2(0, 0), heroTextureLeft, herotextureRight, Keys.Right, Keys.Left);
-            _mannetje2Left._control = new ControlsKeys();
-
-            _mannetje2Right = new Hero(herotextureRight, new Vector2(0, 0), heroTextureLeft, herotextureRight, Keys.Right, Keys.Left);
-            _mannetje2Right._control = new ControlsKeys();
-
-            //BLOKJE
-            Texture2D grassTexture = Content.Load<Texture2D>("tileSheet/grass");
-            Texture2D dirtTexture = Content.Load<Texture2D>("tileSheet/dirt");
-            Texture2D grassLeftTexture = Content.Load<Texture2D>("tileSheet/grassLeft");
-            Texture2D grassRightTexture = Content.Load<Texture2D>("tileSheet/grassRight");
-            Texture2D grassUpTexture = Content.Load<Texture2D>("tileSheet/grassUp");
-
-            grass = new Tile(grassTexture, new Vector2(0, 0));
-            grassRight = new Tile(grassRightTexture, new Vector2(0, 0));
-            grassLeft = new Tile(grassLeftTexture, new Vector2(0, 0));
-            grassUp = new Tile(grassUpTexture, new Vector2(0, 0));
+            heroLeftTexture = Content.Load<Texture2D>("boy/heroLeft");
+            heroLeft = new Hero(heroLeftTexture, new Vector2(0, 0), heroLeftTexture, heroRightTexture);
+            heroLeft._control = new ControlsArrows();
 
 
-           /*collideObjecten = new List<ICollide>();
-            collideObjecten.Add(_mannetje2Left);
-            collideObjecten.Add(_mannetjeLeft);
-            collideObjecten.Add(_mannetje2Right);
-            collideObjecten.Add(_mannetjeRight);
-            collideObjecten.Add(grass);
-            collideObjecten.Add(grassRight);
-            collideObjecten.Add(grassLeft);
-            collideObjecten.Add(grassUp);*/
+            map.Generate(new int[,]
+            {
+           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0},
+           {1,1,1,1,1,1,1,1,1,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,1,1,1,1,1,1,1,1,1},
+           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}
+            }, 30);
 
-
-
-            //LEVELS
-            level = new Level();
-            level._grassTexture = grassTexture;
-            level._dirtTexture = dirtTexture;
-            level._grassLeftTexture = grassLeftTexture;
-            level._grassRightTexture = grassRightTexture;
-            level._grassUpTexture = grassUpTexture;
-            level.CreateWorld();
-        // TODO: use this.Content to load your game content here
+            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -135,9 +101,7 @@ namespace Project
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-            
         }
-      
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -146,83 +110,67 @@ namespace Project
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-
-           /* if (_mannetjeRight.CollisionRect.isOnTopOf(grass.rectangle))
-            {
-                _mannetjeRight.veloCityY.Y = 0f;
-                _mannetjeRight.hasJumped = false;
-            }*/
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
 
-            if (_mannetjeLeft.CollisionRectHero.Intersects(_mannetje2Right.CollisionRectHero))
-            {
 
-                Console.WriteLine("A collision has been detected");
-            }
-            else
-           
-           /*   if (_mannetjeRight.CollisionRect.Intersects(_mannetje2Left.CollisionRect))
-            {
-                System.Console.WriteLine("BBBB");
-            }*/
-            if (_mannetjeRight.isMoving)
-            {
-                camPos += _mannetjeRight.veloCityX;
-            }
-            /* if (_mannetjeLeft.isMoving)
-             {
-                 camPos -= _mannetjeLeft.veloCityX;
-             }*/
 
-            _mannetjeRight.Update(gameTime, soundEffect);
-            _mannetjeLeft.Update(gameTime, soundEffect);
-            _mannetje2Left.Update(gameTime, soundEffect);
-            _mannetje2Right.Update(gameTime, soundEffect);
+            heroRight.Update(gameTime, soundEffect);
+            heroLeft.Update(gameTime, soundEffect);
+            foreach (CollisionTiles tile in map.CollisionTiles)
+            {
+                heroRight.Collision(tile.Rectangle, map.Width, map.Height);
+                camera.Update(heroRight._position, map.Width, map.Height);
+
+            }
+            foreach (CollisionTiles tile in map.CollisionTiles)
+            {
+                heroLeft.Collision(tile.Rectangle, map.Width, map.Height);
+                camera.Update(heroLeft._position, map.Width, map.Height);
+
+            }
+
+
             base.Update(gameTime);
         }
-        Vector2 camPos = new Vector2();
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        /// 
-
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
             // TODO: Add your drawing code here
-           /* var viewMatrix = camera.GetViewMatrix();
-            camera.Positie = camPos;*/
 
 
             //START
-            spriteBatch.Begin(/*transformMatrix: viewMatrix*/);
+            spriteBatch.Begin(SpriteSortMode.Deferred,
+                               BlendState.AlphaBlend,
+                               null, null, null, null,
+                               camera.Transform);
 
-            //HERO
+            //ÉÉN SPRITE LATEN ZIEN
             KeyboardState stateKey = Keyboard.GetState();
-            if (stateKey.IsKeyDown(Keys.Left)){
-                _mannetjeLeft.Draw(spriteBatch);
+
+            if (stateKey.IsKeyDown(Keys.Left))
+            {
+                heroLeft.Draw(spriteBatch);
             }
             if (stateKey.IsKeyUp(Keys.Left))
             {
-                _mannetjeRight.Draw(spriteBatch);
+                heroRight.Draw(spriteBatch);
             }
+            map.Draw(spriteBatch);
+            if (heroRight._position.Y > 450 || heroLeft._position.Y > 450)
+            {
+                map.Draw(spriteBatch);
 
-            if (stateKey.IsKeyDown(Keys.Q))
-            {
-                _mannetje2Left.Draw(spriteBatch);
             }
-            if (stateKey.IsKeyUp(Keys.Q))
-            {
-                _mannetje2Right.Draw(spriteBatch);
-            }
-            level.DrawWorld(spriteBatch);
             spriteBatch.End();
-            //END
-
 
             base.Draw(gameTime);
         }

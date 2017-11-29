@@ -44,16 +44,9 @@ C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\G
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\obj\x86\Debug\Project.csprojResolveAssemblyReference.cache
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\mannetjeJump.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\weirdLeft.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\weirdRight.xnb
 C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\background.wma
 C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\background.xnb
 C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\jump.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\dirt.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grass.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassLeft.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassRight.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassUp.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\weirdLeft.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\weirdRight.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\boy\weirdLeft.xnb
@@ -74,3 +67,7 @@ C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\G
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassLeft.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassRight.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassUp.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\heroLeft.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\heroRight.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\tile1.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\tile2.xnb
