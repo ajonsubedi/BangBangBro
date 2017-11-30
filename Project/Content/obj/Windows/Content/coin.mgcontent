@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/boy/heroRight.png</SourceFile>
-  <SourceTime>2017-11-21T16:04:40.6717916+01:00</SourceTime>
-  <DestFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bin/Windows/boy/heroRight.xnb</DestFile>
-  <DestTime>2017-11-30T23:18:27.8703424+01:00</DestTime>
+  <SourceFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/coin.png</SourceFile>
+  <SourceTime>2017-11-29T22:05:07.3740795+01:00</SourceTime>
+  <DestFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bin/Windows/Content/coin.xnb</DestFile>
+  <DestTime>2017-11-29T22:05:37.4102755+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-09-27T03:32:24+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

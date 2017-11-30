@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/soundTracks/jump.wav</SourceFile>
   <SourceTime>2017-11-07T20:56:44.1075825+01:00</SourceTime>
   <DestFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bin/Windows/soundTracks/jump.xnb</DestFile>
-  <DestTime>2017-11-29T11:16:53.5606045+01:00</DestTime>
+  <DestTime>2017-11-30T23:18:29.7979168+01:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2017-09-27T03:32:24+02:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

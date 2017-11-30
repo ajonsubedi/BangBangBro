@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Project;
 using System;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 
 namespace Project
 {
@@ -19,12 +21,19 @@ namespace Project
         Hero heroRight, heroLeft;   
         Texture2D heroRightTexture, heroLeftTexture;
         Texture2D enemy1RightTexture, enemy1LeftTexture;
+        Texture2D coinTexture;
         Song backgroundMusic;
         SoundEffect soundEffect;
         Camerda2D camera;
         Viewport viewport;
         Vector2 camPos = new Vector2();
         Enemy enemy1Right, enemy1Left;
+        List<Coin> coins = new List<Coin>();
+        Random rnd = new Random();
+        SpriteFont scoreFont;
+        Vector2 scorePos;
+        string score = "0";
+        float _timer;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -81,6 +90,41 @@ namespace Project
             enemy1LeftTexture = Content.Load<Texture2D>("enemy/enemy1left");
             enemy1Left = new Enemy(enemy1LeftTexture, new Vector2(0, 0), enemy1LeftTexture, enemy1RightTexture);
 
+            //COIN
+            coinTexture = Content.Load<Texture2D>("coin");
+
+            coins.Add(new Coin(coinTexture, new Vector2(0, 0)));
+
+
+            coins.Add(new Coin(coinTexture, new Vector2(150, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(180, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(210, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(240, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(270, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(300, 0)));
+
+            coins.Add(new Coin(coinTexture, new Vector2(390, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(420, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(450, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(480, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(510, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(540, 0)));
+
+            //SCORE
+            scoreFont = Content.Load<SpriteFont>("Fipps-Regular");
+            scorePos = new Vector2(0,0);
+
+
+
+
+
+
+
+
+
+
+
+
 
             map.Generate(new int[,]
             {
@@ -125,26 +169,55 @@ namespace Project
                 Exit();
 
             // TODO: Add your update logic here
-
+            _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 
             heroRight.Update(gameTime, soundEffect);
             heroLeft.Update(gameTime, soundEffect);
             enemy1Right.Update(gameTime, soundEffect);
+            foreach (Coin coin in coins)
+            {
+                coin.Update(gameTime);
+            }
             foreach (CollisionTiles tile in map.CollisionTiles)
             {
                 heroRight.Collision(tile.Rectangle, map.Width, map.Height);
-                enemy1Right.Collision(tile.Rectangle, map.Width, map.Height);
-                camera.Update(heroRight._position, map.Width, map.Height);
-
-            }
-            foreach (CollisionTiles tile in map.CollisionTiles)
-            {
                 heroLeft.Collision(tile.Rectangle, map.Width, map.Height);
+                enemy1Right.Collision(tile.Rectangle, map.Width, map.Height);
                 enemy1Left.Collision(tile.Rectangle, map.Width, map.Height);
+                camera.Update(heroRight._position, map.Width, map.Height);
                 camera.Update(heroLeft._position, map.Width, map.Height);
 
+              
+                foreach (Coin coin in coins)
+                {
+                    coin.Collision(tile.Rectangle, map.Width, map.Height);
+                    if (heroRight._viewRect.Intersects(coin._rectangle))
+                    {
+                        coin.isRemoved = true;
+                    }
+
+                    
+                }
+                coins[0]._positie.X = 0;
+                coins[0]._positie.Y = 0;
+                coins[0].isRemoved = false;
+
+                for (int i = 0; i < coins.Count; i++)
+                {
+                    if (coins[i].isRemoved)
+                    {
+                        coins.RemoveAt(i);
+                        i++;
+                    }
+                }
+
+
+
+
             }
+
+            
 
 
             base.Update(gameTime);
@@ -184,8 +257,18 @@ namespace Project
                 map.Draw(spriteBatch);
 
             }
-            enemy1Right.Draw(spriteBatch);
-            enemy1Left.Draw(spriteBatch);
+            // enemy1Right.Draw(spriteBatch);
+            // enemy1Left.Draw(spriteBatch);
+            foreach (Coin coin in coins)
+            {
+                coin.Draw(spriteBatch);
+
+            }
+            //SCORE LATEN ZIEN
+            Vector2 FontOrigin = scoreFont.MeasureString(score) / 2;
+
+            spriteBatch.DrawString(scoreFont,score, scorePos, Color.LightGreen,
+            0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
 
             spriteBatch.End();
 

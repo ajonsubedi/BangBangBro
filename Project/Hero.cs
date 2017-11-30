@@ -14,8 +14,8 @@ namespace Project
     class Hero
     {
         public Vector2 _position = new Vector2(64, 200), _velocity;
-        Rectangle _viewRect;
-        Texture2D _texture;
+        public Rectangle _viewRect;
+        public Texture2D _texture;
         private Texture2D left;
         private Texture2D right;
         private Texture2D jump;
@@ -24,6 +24,7 @@ namespace Project
         public Animation _animation;
         public bool isMoving = false;
         Matrix m;
+        public int score;
 
 
 
@@ -58,12 +59,26 @@ namespace Project
 
         public void Update(GameTime gameTime, SoundEffect soundEffect)
         {
+            List<Coin> coins = new List<Coin>();
             _position += _velocity;
             Input(gameTime, soundEffect);
 
             _viewRect = new Rectangle((int)_position.X, (int)_position.Y, 48, 56);
             if (_velocity.Y < 10)
                 _velocity.Y += 0.4f;
+            foreach (var coin in coins)
+            {
+                if(coin is Hero)
+                {
+                    continue;
+                }
+                if (coin._rectangle.Intersects(this._viewRect))
+                {
+                    score++;
+                    coin.isRemoved = true;
+                }
+            }
+
         }
 
 
