@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/fonts/File.spritefont</SourceFile>
-  <SourceTime>2017-09-27T03:32:18+02:00</SourceTime>
-  <DestFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bin/Windows/fonts/File.xnb</DestFile>
-  <DestTime>2017-11-30T23:18:28.2419719+01:00</DestTime>
+  <SourceFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/fonts/Font1.spritefont</SourceFile>
+  <SourceTime>2017-12-01T00:11:36.1204787+01:00</SourceTime>
+  <DestFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bin/Windows/Content/fonts/Font1.xnb</DestFile>
+  <DestTime>2017-12-01T00:13:10.0854892+01:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2017-09-27T03:32:24+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

@@ -74,7 +74,6 @@ namespace Project
                 }
                 if (coin._rectangle.Intersects(this._viewRect))
                 {
-                    score++;
                     coin.isRemoved = true;
                 }
             }

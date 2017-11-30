@@ -32,7 +32,7 @@ namespace Project
         Random rnd = new Random();
         SpriteFont scoreFont;
         Vector2 scorePos;
-        string score = "0";
+        int score = 0;
         float _timer;
         public Game1()
         {
@@ -70,7 +70,10 @@ namespace Project
             //SOUNDTRACKS
             soundEffect = Content.Load<SoundEffect>("soundTracks/jump");
             backgroundMusic = Content.Load<Song>("soundTracks/background");
-            MediaPlayer.Play(backgroundMusic);
+            for (int i = 0; i < 100; i++)
+            {
+                MediaPlayer.Play(backgroundMusic);
+            }
 
 
             //HERO
@@ -111,8 +114,8 @@ namespace Project
             coins.Add(new Coin(coinTexture, new Vector2(540, 0)));
 
             //SCORE
-            scoreFont = Content.Load<SpriteFont>("Fipps-Regular");
-            scorePos = new Vector2(0,0);
+            scoreFont = Content.Load<SpriteFont>("fonts/Font1");
+            scorePos = new Vector2(35,0);
 
 
 
@@ -188,13 +191,15 @@ namespace Project
                 camera.Update(heroRight._position, map.Width, map.Height);
                 camera.Update(heroLeft._position, map.Width, map.Height);
 
-              
+
                 foreach (Coin coin in coins)
                 {
+
                     coin.Collision(tile.Rectangle, map.Width, map.Height);
                     if (heroRight._viewRect.Intersects(coin._rectangle))
                     {
                         coin.isRemoved = true;
+                        score++;
                     }
 
                     
@@ -208,7 +213,6 @@ namespace Project
                     if (coins[i].isRemoved)
                     {
                         coins.RemoveAt(i);
-                        i++;
                     }
                 }
 
@@ -252,11 +256,6 @@ namespace Project
                 heroRight.Draw(spriteBatch);
             }
             map.Draw(spriteBatch);
-            if (heroRight._position.Y > 450 || heroLeft._position.Y > 450)
-            {
-                map.Draw(spriteBatch);
-
-            }
             // enemy1Right.Draw(spriteBatch);
             // enemy1Left.Draw(spriteBatch);
             foreach (Coin coin in coins)
@@ -265,10 +264,9 @@ namespace Project
 
             }
             //SCORE LATEN ZIEN
-            Vector2 FontOrigin = scoreFont.MeasureString(score) / 2;
+            
 
-            spriteBatch.DrawString(scoreFont,score, scorePos, Color.LightGreen,
-            0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
+            spriteBatch.DrawString(scoreFont,score.ToString(), scorePos, Color.White);
 
             spriteBatch.End();
 
