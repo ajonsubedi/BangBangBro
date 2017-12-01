@@ -182,6 +182,7 @@ namespace Project
             {
                 coin.Update(gameTime);
             }
+
             foreach (CollisionTiles tile in map.CollisionTiles)
             {
                 heroRight.Collision(tile.Rectangle, map.Width, map.Height);
@@ -192,6 +193,7 @@ namespace Project
                 camera.Update(heroLeft._position, map.Width, map.Height);
 
 
+
                 foreach (Coin coin in coins)
                 {
 
@@ -199,23 +201,25 @@ namespace Project
                     if (heroRight._viewRect.Intersects(coin._rectangle))
                     {
                         coin.isRemoved = true;
-                        score++;
                     }
 
-                    
+
                 }
                 coins[0]._positie.X = 0;
                 coins[0]._positie.Y = 0;
                 coins[0].isRemoved = false;
+               
 
                 for (int i = 0; i < coins.Count; i++)
                 {
                     if (coins[i].isRemoved)
                     {
                         coins.RemoveAt(i);
+                        score++;
                     }
                 }
-
+                
+        
 
 
 

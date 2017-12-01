@@ -11,8 +11,9 @@ namespace Project
     class Camerda2D
     {
         public Matrix Transform { get; set; }
-        private readonly Viewport _viewport;
+       public readonly Viewport _viewport;
         public Vector2 centre;
+        public Vector2 coinPos = new Vector2(0, 0);
         public Camerda2D(Viewport viewport)
         {
             _viewport = viewport;
@@ -32,6 +33,23 @@ namespace Project
             else if (positie.Y > yOffset - (_viewport.Height / 2))
                 centre.Y = yOffset - (_viewport.Height / 2);
             else centre.Y = positie.Y;
+
+            Transform = Matrix.CreateTranslation(new Vector3(-centre.X + (_viewport.Width / 2),
+                                                            -centre.Y + (_viewport.Height / 2), 0));
+
+
+
+            if (positie.X < _viewport.Width / 2)
+                coinPos.X = _viewport.Width / 2;
+            else if (positie.X > xOffset - (_viewport.Width / 2))
+                coinPos.X = xOffset - (_viewport.Width / 2);
+            else coinPos.X = positie.X;
+
+            if (positie.Y < _viewport.Height / 2)
+                coinPos.Y = _viewport.Height / 2;
+            else if (positie.Y > yOffset - (_viewport.Height / 2))
+                coinPos.Y = yOffset - (_viewport.Height / 2);
+            else coinPos.Y = positie.Y;
 
             Transform = Matrix.CreateTranslation(new Vector3(-centre.X + (_viewport.Width / 2),
                                                             -centre.Y + (_viewport.Height / 2), 0));
