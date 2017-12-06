@@ -17,7 +17,7 @@ namespace Project
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Level map;
+        World map;
         Hero heroRight, heroLeft;   
         Texture2D heroRightTexture, heroLeftTexture;
         Texture2D enemy1RightTexture, enemy1LeftTexture;
@@ -27,11 +27,11 @@ namespace Project
         Camerda2D camera;
         Viewport viewport;
         Vector2 camPos = new Vector2();
-        Enemy enemy1Right, enemy1Left;
         List<Coin> coins = new List<Coin>();
         Random rnd = new Random();
         SpriteFont scoreFont;
         Vector2 scorePos;
+        public static int ScreenWidth, ScreenHeight;
         int score = 0;
         float _timer;
         public Game1()
@@ -52,7 +52,9 @@ namespace Project
         {
             // TODO: Add your initialization logic here
             camera = new Camerda2D(GraphicsDevice.Viewport);
-            map = new Level();
+            map = new World();
+            ScreenWidth = graphics.PreferredBackBufferWidth;
+            ScreenHeight = graphics.PreferredBackBufferHeight;
             base.Initialize();
         }
 
@@ -87,35 +89,45 @@ namespace Project
 
 
             //ENEMY
-            enemy1RightTexture = Content.Load<Texture2D>("enemy/enemy1Right");
-            enemy1Right = new Enemy(enemy1RightTexture, new Vector2(0, 0), enemy1LeftTexture, enemy1RightTexture);
+            enemy1RightTexture = Content.Load<Texture2D>("enemy/enemyRight");
 
-            enemy1LeftTexture = Content.Load<Texture2D>("enemy/enemy1left");
-            enemy1Left = new Enemy(enemy1LeftTexture, new Vector2(0, 0), enemy1LeftTexture, enemy1RightTexture);
+            enemy1LeftTexture = Content.Load<Texture2D>("enemy/enemyleft");
 
             //COIN
             coinTexture = Content.Load<Texture2D>("coin");
 
+            //SCORE COIN
             coins.Add(new Coin(coinTexture, new Vector2(0, 0)));
 
 
-            coins.Add(new Coin(coinTexture, new Vector2(150, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(180, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(210, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(240, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(270, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(300, 0)));
+     
 
+            coins.Add(new Coin(coinTexture, new Vector2(360, 0)));
             coins.Add(new Coin(coinTexture, new Vector2(390, 0)));
             coins.Add(new Coin(coinTexture, new Vector2(420, 0)));
             coins.Add(new Coin(coinTexture, new Vector2(450, 0)));
             coins.Add(new Coin(coinTexture, new Vector2(480, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(510, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(540, 0)));
+
+            coins.Add(new Coin(coinTexture, new Vector2(630, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(660, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(690, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(720, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(750, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(780, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(810, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(840, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(870, 0)));
+
+
+
+
+
+
+
 
             //SCORE
             scoreFont = Content.Load<SpriteFont>("fonts/Font1");
-            scorePos = new Vector2(35,0);
+            scorePos = new Vector2(camera.centre.X,camera.centre.Y);
 
 
 
@@ -134,19 +146,19 @@ namespace Project
            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0},
            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0},
-           {1,1,1,1,1,1,1,1,1,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,1,1,1,1,1,1,1,1,1},
-           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}
+           {0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}
             }, 30);
 
             // TODO: use this.Content to load your game content here
@@ -177,7 +189,6 @@ namespace Project
 
             heroRight.Update(gameTime, soundEffect);
             heroLeft.Update(gameTime, soundEffect);
-            enemy1Right.Update(gameTime, soundEffect);
             foreach (Coin coin in coins)
             {
                 coin.Update(gameTime);
@@ -187,8 +198,6 @@ namespace Project
             {
                 heroRight.Collision(tile.Rectangle, map.Width, map.Height);
                 heroLeft.Collision(tile.Rectangle, map.Width, map.Height);
-                enemy1Right.Collision(tile.Rectangle, map.Width, map.Height);
-                enemy1Left.Collision(tile.Rectangle, map.Width, map.Height);
                 camera.Update(heroRight._position, map.Width, map.Height);
                 camera.Update(heroLeft._position, map.Width, map.Height);
 
@@ -260,17 +269,16 @@ namespace Project
                 heroRight.Draw(spriteBatch);
             }
             map.Draw(spriteBatch);
-            // enemy1Right.Draw(spriteBatch);
-            // enemy1Left.Draw(spriteBatch);
             foreach (Coin coin in coins)
             {
                 coin.Draw(spriteBatch);
 
             }
+            coins[0].Draw(spriteBatch);
             //SCORE LATEN ZIEN
             
 
-            spriteBatch.DrawString(scoreFont,score.ToString(), scorePos, Color.White);
+            spriteBatch.DrawString(scoreFont,"x " + score.ToString(), scorePos, Color.White);
 
             spriteBatch.End();
 

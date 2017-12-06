@@ -49,7 +49,7 @@
 /processorParam:TextureFormat=Color
 /build:coin.png
 
-#begin enemy/enemy1Left.png
+#begin enemy/enemyLeft.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -59,9 +59,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:enemy/enemy1Left.png
+/build:enemy/enemyLeft.png
 
-#begin enemy/enemy1Right.png
+#begin enemy/enemyRight.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -71,7 +71,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:enemy/enemy1Right.png
+/build:enemy/enemyRight.png
 
 #begin fonts/Font1.spritefont
 /importer:FontDescriptionImporter

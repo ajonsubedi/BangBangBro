@@ -21,7 +21,7 @@ namespace Project
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(_scoreFont, _score.ToString(), _scorePos, Color.White);
+            spriteBatch.DrawString(_scoreFont, "x" +  _score.ToString(), _scorePos, Color.White);
         }
     }
 }

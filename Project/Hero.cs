@@ -59,29 +59,18 @@ namespace Project
 
         public void Update(GameTime gameTime, SoundEffect soundEffect)
         {
-            List<Coin> coins = new List<Coin>();
             _position += _velocity;
             Input(gameTime, soundEffect);
 
             _viewRect = new Rectangle((int)_position.X, (int)_position.Y, 48, 56);
             if (_velocity.Y < 10)
                 _velocity.Y += 0.4f;
-            foreach (var coin in coins)
-            {
-                if(coin is Hero)
-                {
-                    continue;
-                }
-                if (coin._rectangle.Intersects(this._viewRect))
-                {
-                    coin.isRemoved = true;
-                }
-            }
+           
 
         }
 
 
-        private void Input(GameTime gameTime, SoundEffect soundEffect)
+         public virtual void Input(GameTime gameTime, SoundEffect soundEffect)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
@@ -142,7 +131,7 @@ namespace Project
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public  void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_texture, _position, _animation.currentFrame.SourceRectangle, Color.White);
         }

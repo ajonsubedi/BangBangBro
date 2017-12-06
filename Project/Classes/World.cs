@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project
 {
-    class Level
+    class World
     {
         private List<CollisionTiles> collisionTiles = new List<CollisionTiles>();
         public List<CollisionTiles> CollisionTiles

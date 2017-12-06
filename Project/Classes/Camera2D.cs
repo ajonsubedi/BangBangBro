@@ -36,24 +36,11 @@ namespace Project
 
             Transform = Matrix.CreateTranslation(new Vector3(-centre.X + (_viewport.Width / 2),
                                                             -centre.Y + (_viewport.Height / 2), 0));
-
-
-
-            if (positie.X < _viewport.Width / 2)
-                coinPos.X = _viewport.Width / 2;
-            else if (positie.X > xOffset - (_viewport.Width / 2))
-                coinPos.X = xOffset - (_viewport.Width / 2);
-            else coinPos.X = positie.X;
-
-            if (positie.Y < _viewport.Height / 2)
-                coinPos.Y = _viewport.Height / 2;
-            else if (positie.Y > yOffset - (_viewport.Height / 2))
-                coinPos.Y = yOffset - (_viewport.Height / 2);
-            else coinPos.Y = positie.Y;
-
-            Transform = Matrix.CreateTranslation(new Vector3(-centre.X + (_viewport.Width / 2),
-                                                            -centre.Y + (_viewport.Height / 2), 0));
         }
+
+
+
+       
 
     }
 }
