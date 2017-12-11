@@ -11,12 +11,12 @@ namespace Project
     class Score
     {
         public static SpriteFont _scoreFont { get; set; }
-        public static Vector2 _scorePos { get; set; }
-        public static int _score { get; set; }
-        public Score(SpriteFont scoreFont, Vector2 score )
+        public  Vector2 _scorePos { get; set; }
+        public int _score = 0;
+        public Score(SpriteFont scoreFont, Vector2 scorePos )
         {
             _scoreFont = scoreFont;
-            _scorePos = _scorePos;
+            _scorePos = scorePos;
         }
 
         public void Draw(SpriteBatch spriteBatch)

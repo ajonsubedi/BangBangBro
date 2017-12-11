@@ -8,37 +8,30 @@ using System.Threading.Tasks;
 
 namespace Project
 {
-    class Camerda2D
+    class Camera2D
     {
+        Vector2 position;
+
+        public int ScreenWidth { get { return GraphicsDeviceManager.DefaultBackBufferWidth; } }
+        public int ScreenHeight { get { return GraphicsDeviceManager.DefaultBackBufferHeight;} }
         public Matrix Transform { get; set; }
        public readonly Viewport _viewport;
         public Vector2 centre;
         public Vector2 coinPos = new Vector2(0, 0);
-        public Camerda2D(Viewport viewport)
+
+        
+
+        public void Update(Vector2 heroPositie)
         {
-            _viewport = viewport;
 
+            position.X = heroPositie.X - (ScreenWidth / 2);
+
+            if (position.X < 0)
+                position.X = 0;
+        
+
+            Transform = Matrix.CreateTranslation(new Vector3(-position, 0));
         }
-
-        public void Update(Vector2 positie, int xOffset, int yOffset)
-        {
-            if (positie.X < _viewport.Width / 2)
-                centre.X = _viewport.Width / 2;
-            else if (positie.X > xOffset - (_viewport.Width / 2))
-                centre.X = xOffset - (_viewport.Width / 2);
-            else centre.X = positie.X;
-
-            if (positie.Y < _viewport.Height / 2)
-                centre.Y = _viewport.Height / 2;
-            else if (positie.Y > yOffset - (_viewport.Height / 2))
-                centre.Y = yOffset - (_viewport.Height / 2);
-            else centre.Y = positie.Y;
-
-            Transform = Matrix.CreateTranslation(new Vector3(-centre.X + (_viewport.Width / 2),
-                                                            -centre.Y + (_viewport.Height / 2), 0));
-        }
-
-
 
        
 

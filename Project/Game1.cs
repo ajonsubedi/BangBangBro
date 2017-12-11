@@ -16,6 +16,7 @@ namespace Project
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
+        GraphicsDevice graphicsDevice;
         SpriteBatch spriteBatch;
         World map;
         Hero heroRight, heroLeft;   
@@ -24,14 +25,15 @@ namespace Project
         Texture2D coinTexture;
         Song backgroundMusic;
         SoundEffect soundEffect;
-        Camerda2D camera;
+        Camera2D camera;
         Viewport viewport;
         Vector2 camPos = new Vector2();
         List<Coin> coins = new List<Coin>();
         Random rnd = new Random();
-        SpriteFont scoreFont;
-        Vector2 scorePos;
-        public static int ScreenWidth, ScreenHeight;
+       // List<Enemy> enemies = new List<Enemy>();
+      //   static Score score;
+        static SpriteFont scoreFont;
+        static  Vector2 scorePos;
         int score = 0;
         float _timer;
         public Game1()
@@ -51,10 +53,9 @@ namespace Project
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            camera = new Camerda2D(GraphicsDevice.Viewport);
+            camera = new Camera2D();
             map = new World();
-            ScreenWidth = graphics.PreferredBackBufferWidth;
-            ScreenHeight = graphics.PreferredBackBufferHeight;
+
             base.Initialize();
         }
 
@@ -90,8 +91,9 @@ namespace Project
 
             //ENEMY
             enemy1RightTexture = Content.Load<Texture2D>("enemy/enemyRight");
-
             enemy1LeftTexture = Content.Load<Texture2D>("enemy/enemyleft");
+
+          //  enemies.Add(new Enemy(enemy1RightTexture, new Vector2(200, 0), 150));
 
             //COIN
             coinTexture = Content.Load<Texture2D>("coin");
@@ -127,7 +129,8 @@ namespace Project
 
             //SCORE
             scoreFont = Content.Load<SpriteFont>("fonts/Font1");
-            scorePos = new Vector2(camera.centre.X,camera.centre.Y);
+            scorePos = new Vector2(35,0);
+            //score = new Score(scoreFont, scorePos);
 
 
 
@@ -186,9 +189,14 @@ namespace Project
             // TODO: Add your update logic here
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-
+            camera.Update(heroRight.Position);
+            //camera.Update(heroLeft.Position);
             heroRight.Update(gameTime, soundEffect);
             heroLeft.Update(gameTime, soundEffect);
+            /*foreach (Enemy enemy in enemies)
+            {
+                enemy.Update(gameTime);
+            }*/
             foreach (Coin coin in coins)
             {
                 coin.Update(gameTime);
@@ -198,9 +206,11 @@ namespace Project
             {
                 heroRight.Collision(tile.Rectangle, map.Width, map.Height);
                 heroLeft.Collision(tile.Rectangle, map.Width, map.Height);
-                camera.Update(heroRight._position, map.Width, map.Height);
-                camera.Update(heroLeft._position, map.Width, map.Height);
-
+              /*  foreach (Enemy enemy in enemies)
+                {
+                    enemy.Collision(tile.Rectangle, map.Width, map.Height);
+                }*/
+               
 
 
                 foreach (Coin coin in coins)
@@ -274,12 +284,17 @@ namespace Project
                 coin.Draw(spriteBatch);
 
             }
+
+          /*  foreach (Enemy enemy in enemies)
+            {
+                enemy.Draw(spriteBatch);
+            }*/
             coins[0].Draw(spriteBatch);
             //SCORE LATEN ZIEN
-            
+
 
             spriteBatch.DrawString(scoreFont,"x " + score.ToString(), scorePos, Color.White);
-
+           // score.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
