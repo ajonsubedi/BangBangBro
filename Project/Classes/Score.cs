@@ -13,8 +13,11 @@ namespace Project
         public static SpriteFont _scoreFont { get; set; }
         public  Vector2 _scorePos { get; set; }
         public int _score = 0;
+        public Rectangle rectangle = new Rectangle(0, 0, 30, 15);
+        Matrix m;
         public Score(SpriteFont scoreFont, Vector2 scorePos )
         {
+            m = new Matrix();
             _scoreFont = scoreFont;
             _scorePos = scorePos;
         }

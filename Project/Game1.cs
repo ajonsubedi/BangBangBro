@@ -16,7 +16,6 @@ namespace Project
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
-        GraphicsDevice graphicsDevice;
         SpriteBatch spriteBatch;
         World map;
         Hero heroRight, heroLeft;   
@@ -30,12 +29,13 @@ namespace Project
         Vector2 camPos = new Vector2();
         List<Coin> coins = new List<Coin>();
         Random rnd = new Random();
-       // List<Enemy> enemies = new List<Enemy>();
-      //   static Score score;
+        List<Enemy> enemies = new List<Enemy>();
+        static Score score;
         static SpriteFont scoreFont;
         static  Vector2 scorePos;
-        int score = 0;
+       // int score = 0;
         float _timer;
+        Tile tile = new Tile();
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -53,7 +53,7 @@ namespace Project
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            camera = new Camera2D();
+            camera = new Camera2D(GraphicsDevice.Viewport);
             map = new World();
 
             base.Initialize();
@@ -93,7 +93,7 @@ namespace Project
             enemy1RightTexture = Content.Load<Texture2D>("enemy/enemyRight");
             enemy1LeftTexture = Content.Load<Texture2D>("enemy/enemyleft");
 
-          //  enemies.Add(new Enemy(enemy1RightTexture, new Vector2(200, 0), 150));
+            enemies.Add(new Enemy(enemy1RightTexture, new Vector2(510, 0), 150));
 
             //COIN
             coinTexture = Content.Load<Texture2D>("coin");
@@ -130,7 +130,7 @@ namespace Project
             //SCORE
             scoreFont = Content.Load<SpriteFont>("fonts/Font1");
             scorePos = new Vector2(35,0);
-            //score = new Score(scoreFont, scorePos);
+            score = new Score(scoreFont, scorePos);
 
 
 
@@ -157,8 +157,8 @@ namespace Project
            {0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
            {0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0},
            {0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+           {0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           {1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
            {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
            {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
            {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}
@@ -189,27 +189,38 @@ namespace Project
             // TODO: Add your update logic here
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            camera.Update(heroRight.Position);
+            camera.Update(heroRight._position, heroRight._viewRect);
+           // camera.Update(score._scorePos, score.rectangle);
+            if (heroRight.isMoving)
+                camPos += heroRight._velocity;
+           
+
+            camPos += score._scorePos;
+            // camera.UpdateScore(gameTime, score);
             //camera.Update(heroLeft.Position);
             heroRight.Update(gameTime, soundEffect);
             heroLeft.Update(gameTime, soundEffect);
-            /*foreach (Enemy enemy in enemies)
+            
+            foreach (Enemy enemy in enemies)
             {
-                enemy.Update(gameTime);
-            }*/
+
+                    enemy.Update(gameTime, soundEffect );
+                   
+                
+            }
             foreach (Coin coin in coins)
             {
                 coin.Update(gameTime);
             }
-
+            
             foreach (CollisionTiles tile in map.CollisionTiles)
             {
                 heroRight.Collision(tile.Rectangle, map.Width, map.Height);
                 heroLeft.Collision(tile.Rectangle, map.Width, map.Height);
-              /*  foreach (Enemy enemy in enemies)
+                foreach (Enemy enemy in enemies)
                 {
                     enemy.Collision(tile.Rectangle, map.Width, map.Height);
-                }*/
+                }
                
 
 
@@ -234,7 +245,7 @@ namespace Project
                     if (coins[i].isRemoved)
                     {
                         coins.RemoveAt(i);
-                        score++;
+                        score._score++;
                     }
                 }
                 
@@ -259,13 +270,11 @@ namespace Project
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            var viewMatrix = camera.GetViewMatrix();
+            camera.Position = camPos;
 
             //START
-            spriteBatch.Begin(SpriteSortMode.Deferred,
-                               BlendState.AlphaBlend,
-                               null, null, null, null,
-                               camera.Transform);
+            spriteBatch.Begin(transformMatrix: viewMatrix);
 
             //ÉÉN SPRITE LATEN ZIEN
             KeyboardState stateKey = Keyboard.GetState();
@@ -285,16 +294,16 @@ namespace Project
 
             }
 
-          /*  foreach (Enemy enemy in enemies)
+            foreach (Enemy enemy in enemies)
             {
                 enemy.Draw(spriteBatch);
-            }*/
+            }
             coins[0].Draw(spriteBatch);
             //SCORE LATEN ZIEN
 
 
-            spriteBatch.DrawString(scoreFont,"x " + score.ToString(), scorePos, Color.White);
-           // score.Draw(spriteBatch);
+           // spriteBatch.DrawString(scoreFont,"x " + score.ToString(), scorePos, Color.White);
+            score.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

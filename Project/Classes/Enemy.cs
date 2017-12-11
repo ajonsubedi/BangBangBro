@@ -23,6 +23,7 @@ namespace Project
         public bool right;
         public float distance;
         public float oldDistance;
+        public bool isMoving = true;
 
         public Enemy(Texture2D texture, Vector2 newposition, float newDistance)
         {
@@ -38,55 +39,26 @@ namespace Project
             _animation.aantalBewegingenPerSec = 8;
         }
 
-        float mouseDistance;
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, SoundEffect soundEffect)
         {
             _position += _velocity;
-            origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
-
-            if(distance <= 0)
-            {
-                right = true;
-                _velocity.X = 1f;
-            }
-            else if(distance <= oldDistance)
-            {
-                right = false;
-                _velocity.X = -1f;
-            }
-
-            if (right) distance += 1; else distance -= 1;
-            MouseState mouse = Mouse.GetState();
-            mouseDistance = mouse.X - _position.X;
-
-            if(mouseDistance >= -200 && mouseDistance <= 200)
-            {
-                if (mouseDistance < -1)
-                    _velocity.X = -1f;
-                else if (mouseDistance > 1)
-                    _velocity.X = 1f;
-                else if(mouseDistance == 0)
-                    _velocity.X = 0f;
-            }
-          
-
-            _viewRect.X += 75;
-            _animation.Update(gameTime);
-            if (_viewRect.X > 1000)
-                _viewRect.X = 0;
-            if (_velocity.Y < 30)
+            if(_position.X > _viewRect.Width / 3)
+            _position.X++;
+           
+            _viewRect = new Rectangle((int)_position.X, (int)_position.Y, 48, 56);
+            if (_velocity.Y < 10)
                 _velocity.Y += 0.4f;
-        }
 
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            if(_velocity.X > 0)
-                spriteBatch.Draw(_texture, _position,null, Color.White, rotation, origin, 1f, SpriteEffects.FlipHorizontally, 0f);
-            else
-                spriteBatch.Draw(_texture, _position, null, Color.White, rotation, origin, 1f, SpriteEffects.None, 0f);
+            _animation.Update(gameTime);
+
+
 
         }
+
+
+        
+       
 
 
         public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
@@ -98,11 +70,11 @@ namespace Project
             }
             if (_viewRect.TouchLeftOf(newRectangle))
             {
-                _position.X = newRectangle.X - _viewRect.Width;
+                _position.X--;
             }
             if (_viewRect.TouchRightOf(newRectangle))
             {
-                _position.X = newRectangle.X + 17;
+                _position.X++;
             }
             if (_viewRect.TouchBottomOf(newRectangle))
             {
@@ -114,6 +86,11 @@ namespace Project
             if (_position.Y < 0) _velocity.Y = 1f;
             if (_position.Y > yOffset - _viewRect.Height) _position.Y = yOffset - _viewRect.Height;
 
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(_texture, _position, _animation.currentFrame.SourceRectangle, Color.White);
         }
     }
 }

@@ -25,14 +25,6 @@ namespace Project
         public bool isMoving = false;
         Matrix m;
         public int score;
-
-
-
-
-
-
-
-
         public Vector2 Position
         {
             get { return _position; }
@@ -92,13 +84,7 @@ namespace Project
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                _viewRect.X += 48;
                 _animation.Update(gameTime);
-                if (_viewRect.X > 140)
-                {
-                    _viewRect.X = 0;
-                }
-                isMoving = true;
             }
 
         }
@@ -113,6 +99,7 @@ namespace Project
             }
             if (_viewRect.TouchLeftOf(newRectangle))
             {
+                
                 _position.X = newRectangle.X - _viewRect.Width;
             }
             if (_viewRect.TouchRightOf(newRectangle))
