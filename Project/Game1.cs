@@ -16,12 +16,14 @@ namespace Project
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
+        GraphicsDevice graphicsDevice;
         SpriteBatch spriteBatch;
         World map;
         Hero heroRight, heroLeft;   
         Texture2D heroRightTexture, heroLeftTexture;
         Texture2D enemy1RightTexture, enemy1LeftTexture;
         Texture2D coinTexture;
+        Texture2D btnPlayTexture, btnInstructionTexture;
         Song backgroundMusic;
         SoundEffect soundEffect;
         Camera2D camera;
@@ -35,7 +37,21 @@ namespace Project
         static  Vector2 scorePos;
        // int score = 0;
         float _timer;
+        Button btnPlay, btnInstruction;
         Tile tile = new Tile();
+        
+
+        enum GameState
+        {
+            MainMenu,
+            Instructions,
+            Playing
+        }
+
+        GameState CurrentGameState = GameState.MainMenu;
+        
+        int screenWidth = 1920, screenHeight = 1080;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -68,6 +84,22 @@ namespace Project
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tile.Content = Content;
+
+            //SCREEN
+            graphics.PreferredBackBufferWidth = screenWidth;
+            graphics.PreferredBackBufferHeight = screenHeight;
+            graphics.ApplyChanges();
+
+
+            //BUTTON
+            btnPlayTexture = Content.Load<Texture2D>("buttons/btnPlay");
+            btnPlay = new Button(btnPlayTexture, graphics.GraphicsDevice);
+            btnPlay.setPosition(new Vector2(-50,750));
+
+            btnInstructionTexture = Content.Load<Texture2D>("buttons/btnInstructions");
+            btnInstruction = new Button(btnInstructionTexture, graphics.GraphicsDevice);
+            btnInstruction.setPosition(new Vector2(1300, 750));
+
 
 
             //SOUNDTRACKS
@@ -127,10 +159,15 @@ namespace Project
 
 
 
+
             //SCORE
-            scoreFont = Content.Load<SpriteFont>("fonts/Font1");
+            scoreFont = Content.Load<SpriteFont>("fonts/scoreFont");
             scorePos = new Vector2(35,0);
             score = new Score(scoreFont, scorePos);
+
+
+           
+            
 
 
 
@@ -183,6 +220,7 @@ namespace Project
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            IsMouseVisible = true;
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -255,6 +293,21 @@ namespace Project
 
             }
 
+
+            //MAIN MENU
+            MouseState mouse = Mouse.GetState();
+            switch (CurrentGameState)
+            {
+                case GameState.MainMenu:
+                    if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
+                    btnPlay.Update(mouse);
+
+                    if (btnInstruction.isClicked == true) CurrentGameState = GameState.Instructions;
+                    btnInstruction.Update(mouse);
+                    break;
+                case GameState.Playing:
+                    break;
+            }
             
 
 
@@ -276,34 +329,47 @@ namespace Project
             //START
             spriteBatch.Begin(transformMatrix: viewMatrix);
 
-            //ÉÉN SPRITE LATEN ZIEN
-            KeyboardState stateKey = Keyboard.GetState();
-
-            if (stateKey.IsKeyDown(Keys.Left))
+            //MAIN MENU
+            switch (CurrentGameState)
             {
-                heroLeft.Draw(spriteBatch);
-            }
-            if (stateKey.IsKeyUp(Keys.Left))
-            {
-                heroRight.Draw(spriteBatch);
-            }
-            map.Draw(spriteBatch);
-            foreach (Coin coin in coins)
-            {
-                coin.Draw(spriteBatch);
+                case GameState.MainMenu:
+                    spriteBatch.Draw(Content.Load<Texture2D>("background/mainMenu"), new Rectangle(-175,0,screenWidth, screenHeight), Color.White);
+                    btnPlay.Draw(spriteBatch);
+                    btnInstruction.Draw(spriteBatch);
+                    break;
+                case GameState.Playing:
+                    //ÉÉN SPRITE LATEN ZIEN
+                    KeyboardState stateKey = Keyboard.GetState();
 
+                    if (stateKey.IsKeyDown(Keys.Left))
+                    {
+                        heroLeft.Draw(spriteBatch);
+                    }
+                    if (stateKey.IsKeyUp(Keys.Left))
+                    {
+                        heroRight.Draw(spriteBatch);
+                    }
+                    map.Draw(spriteBatch);
+                    foreach (Coin coin in coins)
+                    {
+                        coin.Draw(spriteBatch);
+
+                    }
+
+                    foreach (Enemy enemy in enemies)
+                    {
+                        enemy.Draw(spriteBatch);
+                    }
+                    coins[0].Draw(spriteBatch);
+                    //SCORE LATEN ZIEN
+
+
+                    // spriteBatch.DrawString(scoreFont,"x " + score.ToString(), scorePos, Color.White);
+                    score.Draw(spriteBatch);
+                    break;
             }
 
-            foreach (Enemy enemy in enemies)
-            {
-                enemy.Draw(spriteBatch);
-            }
-            coins[0].Draw(spriteBatch);
-            //SCORE LATEN ZIEN
-
-
-           // spriteBatch.DrawString(scoreFont,"x " + score.ToString(), scorePos, Color.White);
-            score.Draw(spriteBatch);
+            
             spriteBatch.End();
 
             base.Draw(gameTime);

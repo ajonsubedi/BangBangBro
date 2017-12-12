@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Classes\Animation.cs" />
     <Compile Include="Classes\AnimationFrame.cs" />
+    <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Camera2D.cs" />
     <Compile Include="Classes\Coin.cs" />
     <Compile Include="Classes\Controls.cs" />

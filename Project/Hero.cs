@@ -61,6 +61,14 @@ namespace Project
 
         }
 
+        public void MainMenuUpdate(GameTime gameTime)
+        {
+            if (_position.X < 0) _position.X++;
+            if (_position.X > GraphicsDeviceManager.DefaultBackBufferWidth - _viewRect.Width) _position.X = GraphicsDeviceManager.DefaultBackBufferWidth - _viewRect.Width;
+            if (_position.Y < 0) _velocity.Y = 1f;
+            if (_position.Y > GraphicsDeviceManager.DefaultBackBufferHeight - _viewRect.Height) _position.Y = GraphicsDeviceManager.DefaultBackBufferHeight - _viewRect.Height;
+        }
+
 
          public virtual void Input(GameTime gameTime, SoundEffect soundEffect)
         {
