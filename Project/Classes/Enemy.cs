@@ -44,6 +44,8 @@ namespace Project
             _position += _velocity;
             if(_position.X > _viewRect.Width / 3)
             _position.X++;
+
+           
            
             _viewRect = new Rectangle((int)_position.X, (int)_position.Y, 48, 56);
             if (_velocity.Y < 10)
