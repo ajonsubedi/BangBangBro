@@ -80,3 +80,10 @@ C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game de
 C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\buttons\btnInstructions.xnb
 C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\background\bgNormal.xnb
 C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\ladder.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\healthBarGreen.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\healthBarRed.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\health.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\background\instructionPage.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\buttons\btnBack.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\background\gameOverPage.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\buttons\btnPlayAgain.xnb

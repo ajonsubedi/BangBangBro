@@ -42,10 +42,10 @@ namespace Project
 
 
             //Coin laten draaien
-            _rectangle.X += 30;
             _animation.Update(gameTime);
-            if (_rectangle.X > 1000000000000000)
-                _rectangle.X = 0;
+            _rectangle.X += 30;
+                 if (_rectangle.X > 1000000000000000)
+                  _rectangle.X = 0;
             if (_velocity.Y < 30)
                 _velocity.Y += 0.4f;
         }

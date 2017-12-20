@@ -11,7 +11,7 @@ namespace Project
 {
     class Tile
     {
-        protected Texture2D texture;
+        public Texture2D texture;
         private Rectangle rectangle;
 
         public Rectangle Rectangle

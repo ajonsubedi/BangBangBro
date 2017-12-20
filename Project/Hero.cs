@@ -23,17 +23,10 @@ namespace Project
         public Controls _control { get; set; }
         public Animation _animation;
         public bool isMoving = false;
-        Matrix m;
-        public int score;
-        public Vector2 Position
-        {
-            get { return _position; }
-            set { _position = value; }
-        }
+        public int health;
 
-        public Hero(Texture2D texture, Vector2 positie, Texture2D heroLeft, Texture2D heroRight)
+        public Hero(Texture2D texture, Vector2 positie, Texture2D heroLeft, Texture2D heroRight, int newHealth)
         {
-            m = new Matrix();
             _texture = texture;
             _position = positie;
             _viewRect = new Rectangle(0, 0, 48, 56);
@@ -45,6 +38,7 @@ namespace Project
             _animation.AddFrame(new Rectangle(48, 0, 48, 56));
             _animation.AddFrame(new Rectangle(96, 0, 48, 56));
             _animation.aantalBewegingenPerSec = 8;
+            health = newHealth;
         }
 
 
@@ -57,7 +51,6 @@ namespace Project
             _viewRect = new Rectangle((int)_position.X, (int)_position.Y, 48, 56);
             if (_velocity.Y < 10)
                 _velocity.Y += 0.4f;
-           
 
         }
 
@@ -128,7 +121,9 @@ namespace Project
 
         public  void Draw(SpriteBatch spriteBatch)
         {
+            if(health > 1)
             spriteBatch.Draw(_texture, _position, _animation.currentFrame.SourceRectangle, Color.White);
+
         }
 
     }

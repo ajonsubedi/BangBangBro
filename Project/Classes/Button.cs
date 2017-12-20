@@ -13,7 +13,7 @@ namespace Project
     {
         Texture2D _texture;
         Vector2 _position;
-        Rectangle _rectangle;
+        public  Rectangle _rectangle;
 
         Color colour = new Color(255, 255, 255, 255);
 

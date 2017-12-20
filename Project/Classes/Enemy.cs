@@ -25,12 +25,10 @@ namespace Project
         public float oldDistance;
         public bool isMoving = true;
 
-        public Enemy(Texture2D texture, Vector2 newposition, float newDistance)
+        public Enemy(Texture2D texture, Vector2 newposition)
         {
             _texture = texture;
             _position = newposition;
-            distance = newDistance;
-            oldDistance = distance;
             _animation = new Animation();
             _animation.AddFrame(new Rectangle(0, 0, 75, 55));
             _animation.AddFrame(new Rectangle(75, 0, 75, 55));
@@ -45,8 +43,9 @@ namespace Project
             if(_position.X > _viewRect.Width / 3)
             _position.X++;
 
-           
-           
+            
+
+
             _viewRect = new Rectangle((int)_position.X, (int)_position.Y, 48, 56);
             if (_velocity.Y < 10)
                 _velocity.Y += 0.4f;
@@ -63,7 +62,7 @@ namespace Project
        
 
 
-        public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        public void Collision(GameTime gameTime, Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (_viewRect.TouchTopOf(newRectangle))
             {
@@ -72,11 +71,9 @@ namespace Project
             }
             if (_viewRect.TouchLeftOf(newRectangle))
             {
-                _position.X--;
             }
             if (_viewRect.TouchRightOf(newRectangle))
             {
-                _position.X++;
             }
             if (_viewRect.TouchBottomOf(newRectangle))
             {
@@ -88,6 +85,17 @@ namespace Project
             if (_position.Y < 0) _velocity.Y = 1f;
             if (_position.Y > yOffset - _viewRect.Height) _position.Y = yOffset - _viewRect.Height;
 
+        }
+
+
+        public void MoveEnemyAround(int leftCollision, int rightCollision)
+        {
+            
+                if (this._position.X == leftCollision)
+                     this._velocity.X--;
+                else if (this._position.X == rightCollision)
+                    this._velocity.X++;
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
