@@ -10,67 +10,20 @@ namespace Project
 {
     class Background
     {
-        public Texture2D texture;
-        public Rectangle rect;
+        GraphicsDevice graphics;
+        public Texture2D _texture;
+        public Rectangle _rectangle;
+        public Vector2 _position;
+        public Background(Texture2D texture, Vector2 position, Rectangle rectangle)
+        {
+            _texture = texture;
+            _position = position;
+            _rectangle = rectangle;
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, rect, Color.White);
-        }
-    }
-
-    class Scroll : Background
-    {
-        public Scroll(Texture2D textureIn, Rectangle rectIn)
-        {
-            texture = textureIn;
-            rect = rectIn;
-        }
-        public void Update()
-        {
-            rect.X -= 3;
-
-        }
-    }
-
-    class FarBuilding : Background
-    {
-        public FarBuilding(Texture2D textureIn, Rectangle rectIn)
-        {
-            texture = textureIn;
-            rect = rectIn;
-        }
-        public void Update()
-        {
-            rect.X -= 10;
-
-        }
-    }
-
-    class Building : Background
-    {
-        public Building(Texture2D textureIn, Rectangle rectIn)
-        {
-            texture = textureIn;
-            rect = rectIn;
-        }
-        public void Update()
-        {
-            rect.X -= 2;
-
-        }
-    }
-
-    class ForeBuilding : Background
-    {
-        public ForeBuilding(Texture2D textureIn, Rectangle rectIn)
-        {
-            texture = textureIn;
-            rect = rectIn;
-        }
-        public void Update()
-        {
-            rect.X -= 2;
-
+            spriteBatch.Draw(_texture, _rectangle, Color.White);
         }
     }
 }

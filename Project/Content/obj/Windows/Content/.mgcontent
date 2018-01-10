@@ -4,14 +4,28 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/boy/weirdLeft.png</File>
-    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/boy/weirdRight.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/background/bgNormal.jpg</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/background/gameOverPage.jpg</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/background/instructionPage.jpg</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/background/mainMenu.jpg</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/boy/heroLeft.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/boy/heroRight.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bullet.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/buttons/btnBack.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/buttons/btnInstructions.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/buttons/btnPlay.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/buttons/btnPlayAgain.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/coin.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/enemy/enemyLeft.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/enemy/enemyRight.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/fonts/scoreFont.spritefont</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/health.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/healthBarGreen.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/healthBarRed.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/ladder.png</File>
     <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/soundTracks/background.mp3</File>
     <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/soundTracks/jump.wav</File>
-    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/dirt.png</File>
-    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/grass.png</File>
-    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/grassLeft.png</File>
-    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/grassRight.png</File>
-    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/grassUp.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/tile1.png</File>
+    <File>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/tileSheet/tile2.png</File>
   </SourceFiles>
 </SourceFileCollection>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Project.Classes;
@@ -11,152 +12,120 @@ using System.Threading.Tasks;
 
 namespace Project
 {
-
-    class Hero : ICollide
+    class Hero
     {
-
-
-        Matrix m;
-        public Vector2 _positie;
-        public Texture2D _texture { get; set; }
+        public Vector2 _position = new Vector2(64, 200), _velocity;
+        public Rectangle _viewRect;
+        public Texture2D _texture;
         private Texture2D left;
         private Texture2D right;
         private Texture2D jump;
-        private Keys GoRight;
-        private Keys GoLeft;
-        public Rectangle _viewRect;
-        public bool hasJumped;
-        public Animation _animation;
-        public float scale { get; set; }
-
-        //variabelen voor collision detection
-        public Rectangle CollisionRectHero;
-
-        //private Animation _animation
-        public Vector2 veloCityX = new Vector2(10, 0);
-        public Vector2 veloCityY = new Vector2(0, 10);
+        public bool hasJumped = false;
         public Controls _control { get; set; }
-
+        public Animation _animation;
         public bool isMoving = false;
-        public Hero(Texture2D texture, Vector2 positie, Texture2D heroLeft, Texture2D heroRight, Keys GoRightIn, Keys GoLeftIn)
+        public int health;
+
+        public Hero(Texture2D texture, Vector2 positie, Texture2D heroLeft, Texture2D heroRight, int newHealth)
         {
-            m = new Matrix();
             _texture = texture;
-            _positie = positie; //new Vector2(0, 300);
-            _viewRect = new Rectangle((int)_positie.X, (int)_positie.Y, 48, 56);
-            CollisionRectHero = new Rectangle((int)_positie.X, (int)_positie.Y, 48, 56);
+            _position = positie;
+            _viewRect = new Rectangle(0, 0, 48, 56);
             left = heroLeft;
             right = heroRight;
-            GoLeft = GoLeftIn;
-            GoRight = GoRightIn;
             hasJumped = true;
-
             _animation = new Animation();
             _animation.AddFrame(new Rectangle(0, 0, 48, 56));
             _animation.AddFrame(new Rectangle(48, 0, 48, 56));
             _animation.AddFrame(new Rectangle(96, 0, 48, 56));
             _animation.aantalBewegingenPerSec = 8;
-
+            health = newHealth;
         }
+
+
+
         public void Update(GameTime gameTime, SoundEffect soundEffect)
         {
-            _control.Update();
-            _positie += veloCityY;
-            //LEFT AND RIGHT
-            if (_control.left || _control.right)
-            {
-                _viewRect.X += 48;
-                _animation.Update(gameTime);
-                if (_viewRect.X > 140)
-                {
-                    _viewRect.X = 0;
-                }
-                isMoving = true;
-            }
-            else
-                isMoving = false;
-            if (_control.left)
-            {
-                veloCityX.X = 3f;
-                _texture = left;
-                _positie -= veloCityX;
-            }
-            if (_control.right)
-            {
-                veloCityX.X = 3f;
-                _texture = right;
-                _positie += veloCityX;
-            }
-            else veloCityX.X = 0f;
+            _position += _velocity;
+            Input(gameTime, soundEffect);
 
-            //JUMP   (https://www.youtube.com/watch?v=ZLxIShw-7ac)
+            _viewRect = new Rectangle((int)_position.X, (int)_position.Y, 48, 56);
+            if (_velocity.Y < 10)
+                _velocity.Y += 0.4f;
 
-            if (veloCityY.Y < 10)
-                veloCityY.Y += 0.4f;
-            if (_control.jump && hasJumped == false)
+        }
+
+        public void MainMenuUpdate(GameTime gameTime)
+        {
+            if (_position.X < 0) _position.X++;
+            if (_position.X > GraphicsDeviceManager.DefaultBackBufferWidth - _viewRect.Width) _position.X = GraphicsDeviceManager.DefaultBackBufferWidth - _viewRect.Width;
+            if (_position.Y < 0) _velocity.Y = 1f;
+            if (_position.Y > GraphicsDeviceManager.DefaultBackBufferHeight - _viewRect.Height) _position.Y = GraphicsDeviceManager.DefaultBackBufferHeight - _viewRect.Height;
+        }
+
+
+         public virtual void Input(GameTime gameTime, SoundEffect soundEffect)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                _positie.Y -= 60f;//SPEED & HEIGHT
-                veloCityY.Y = 10f;//SPEED
+                _velocity.X = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
+
+            }
+
+            else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                _velocity.X = -(float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
+            else _velocity.X = 0f;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Up) && hasJumped == false)
+            {
+                _position.Y -= 5f;
+                _velocity.Y = -9f;
                 hasJumped = true;
-                _positie -= veloCityY;
                 soundEffect.Play();
             }
 
-            if (hasJumped == false)
+            if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                veloCityY.Y = 0f;
-            }
-            if (_positie.Y + _texture.Height >= 468/*GRAVITY!!!!*/)
-            {
-                hasJumped = false;
+                _animation.Update(gameTime);
             }
 
-
-          //  CollisionRectHero.X = (int)_positie.X;
-          //  CollisionRectHero.Y = (int)_positie.Y;
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(_texture, _positie, _animation.currentFrame.SourceRectangle, Color.White);
-        }
-
-
-        //COLLISION DETECTIE
         public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (_viewRect.TouchTopOf(newRectangle))
             {
                 _viewRect.Y = newRectangle.Y - _viewRect.Height;
-                veloCityY.Y = 0f;
+                _velocity.Y = 0f;
                 hasJumped = false;
             }
-
             if (_viewRect.TouchLeftOf(newRectangle))
             {
-                _positie.X = newRectangle.X - _viewRect.Width - 2;
+                
+                _position.X = newRectangle.X - _viewRect.Width;
             }
-
             if (_viewRect.TouchRightOf(newRectangle))
             {
-                _positie.X = newRectangle.X + newRectangle.Width + 2;
-
+                _position.X = newRectangle.X + 17;
             }
             if (_viewRect.TouchBottomOf(newRectangle))
             {
-                veloCityY.Y = 1f;
+                _velocity.Y = 1f;
             }
 
-            if (_positie.X < 0 ) _positie.X = 0;
-            if (_positie.X > xOffset - _viewRect.Width) _positie.X = xOffset - _viewRect.Width;
-            if (_positie.Y < 0) veloCityY.Y = 1f;
-            if (_positie.Y > yOffset - _viewRect.Height) _positie.Y = yOffset - _viewRect.Height; 
+            if (_position.X < 0) _position.X = 0;
+            if (_position.X > xOffset - _viewRect.Width) _position.X = xOffset - _viewRect.Width;
+            if (_position.Y < 0) _velocity.Y = 1f;
+            if (_position.Y > yOffset - _viewRect.Height) _position.Y = yOffset - _viewRect.Height;
+
         }
 
-
-        public Rectangle GetCollisionRectangle()
+        public  void Draw(SpriteBatch spriteBatch)
         {
-            return CollisionRectHero;
+            if(health >= 1 || _position.Y > 0)
+            spriteBatch.Draw(_texture, _position, _animation.currentFrame.SourceRectangle, Color.White);
+
         }
+
     }
 }

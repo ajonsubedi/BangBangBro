@@ -8,31 +8,52 @@ using System.Threading.Tasks;
 
 namespace Project
 {
-    class Camerda2D
+    class Camera2D
     {
-        private readonly Viewport _viewport;
-        public Camerda2D(Viewport viewport)
+        public Vector2 Position { get; set; }
+        public Matrix Transform { get; set; }
+        public Viewport _viewport;
+        public Vector2 centre;
+        public Vector2 Origin { get; set; }
+
+        public Camera2D(Viewport newView)
         {
-            _viewport = viewport;
-            Origin = new Vector2(viewport.Width / 4f, viewport.Height / 4f);
-            Positie = Vector2.Zero;
+            _viewport = newView;
+            Origin = new Vector2(newView.Width / 2f, newView.Height / 2f);
+            Position = Vector2.Zero;
         }
+
 
         public Vector2 ViewportCenter
         {
             get
             {
-                return new Vector2(_viewport.Width * -0.5f, _viewport.Height * -0.5f);
+                return new Vector2(_viewport.Width * 0.5f, _viewport.Height * 0.5f);
             }
         }
+         
+        public void Update(Vector2 objPos, Rectangle objRect)
+        {
+            centre = new Vector2(objPos.X + (objRect.Width / 2) - 200, 0);
 
-        public Vector2 Positie { get; set; }
-        public Vector2 Origin { get; set; }
+        }
 
         public Matrix GetViewMatrix()
         {
-            Matrix m = Matrix.CreateTranslation(new Vector3(-Positie, 0));
+            Matrix m = Matrix.CreateScale(new Vector3(1,1,0)) * Matrix.CreateTranslation(new Vector3(-centre.X, centre.Y, 0));
             return m;
         }
+
+        
+
+        /*public void UpdateScore(GameTime gameTime, Score score)
+        {
+            centre = new Vector2(score._scorePos.X + (score.rectangle.Width / 2) - 200, 0);
+            Transform = Matrix.CreateScale(new Vector3(1, 1, 0)) * Matrix.CreateTranslation(new Vector3(-centre.X, -centre.Y, 0));
+
+        }*/
+
+
+
     }
 }

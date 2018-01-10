@@ -44,33 +44,77 @@ C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\G
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\obj\x86\Debug\Project.csprojResolveAssemblyReference.cache
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\mannetjeJump.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\weirdLeft.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\weirdRight.xnb
 C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\background.wma
 C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\background.xnb
 C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\jump.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\dirt.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grass.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassLeft.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassRight.xnb
-C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassUp.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\weirdLeft.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\weirdRight.xnb
-C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\boy\weirdLeft.xnb
-C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\boy\weirdRight.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\soundTracks\background.wma
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\soundTracks\background.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\soundTracks\jump.xnb
-C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\tileSheet\dirt.xnb
-C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\tileSheet\grass.xnb
-C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\tileSheet\grassLeft.xnb
-C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\tileSheet\grassRight.xnb
-C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\tileSheet\grassUp.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\background.wma
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\background.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\soundTracks\jump.xnb
-C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\dirt.xnb
-C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grass.xnb
-C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassLeft.xnb
-C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassRight.xnb
-C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\grassUp.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\heroLeft.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\heroRight.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\tile1.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\tile2.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\coin.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\enemy\enemyLeft.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\enemy\enemyRight.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\background\mainMenu.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\buttons\btnPlay.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\fonts\scoreFont.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\buttons\btnInstructions.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\background\bgNormal.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\ladder.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\healthBarGreen.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\healthBarRed.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\health.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\background\instructionPage.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\buttons\btnBack.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\background\gameOverPage.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\buttons\btnPlayAgain.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\bullet.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\bullet.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\coin.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\health.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\healthBarGreen.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\healthBarRed.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\ladder.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\background\bgNormal.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\background\gameOverPage.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\background\instructionPage.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\background\mainMenu.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\heroLeft.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\boy\heroRight.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\buttons\btnBack.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\buttons\btnInstructions.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\buttons\btnPlay.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\buttons\btnPlayAgain.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\bullet.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\coin.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\health.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\healthBarGreen.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\healthBarRed.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\ladder.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\background\bgNormal.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\background\gameOverPage.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\background\instructionPage.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\background\mainMenu.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\boy\heroLeft.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\boy\heroRight.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\buttons\btnBack.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\buttons\btnInstructions.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\buttons\btnPlay.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\buttons\btnPlayAgain.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\enemy\enemyLeft.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\enemy\enemyRight.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\fonts\scoreFont.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\tileSheet\tile1.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\tileSheet\tile2.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\enemy\enemyLeft.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\enemy\enemyRight.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\fonts\scoreFont.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\tile1.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\tile2.xnb
