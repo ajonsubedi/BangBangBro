@@ -38,13 +38,13 @@ namespace Project
         {
             //coin een gravity geven
             _positie += _velocity;
-            _rectangle = new Rectangle((int)_positie.X, (int)_positie.Y, 48, 56);
+            _rectangle = new Rectangle((int)_positie.X, (int)_positie.Y + 10, 30, 30);
 
 
             //Coin laten draaien
             _animation.Update(gameTime);
             _rectangle.X += 30;
-                 if (_rectangle.X > 1000000000000000)
+                 if (_rectangle.X > 999999999999999999)
                   _rectangle.X = 0;
             if (_velocity.Y < 30)
                 _velocity.Y += 0.4f;
@@ -54,21 +54,10 @@ namespace Project
         {
             if (_rectangle.TouchTopOf(newRectangle))
             {
-                _rectangle.Y = newRectangle.Y - _rectangle.Height;
+               // _rectangle.Y = newRectangle.Y - _rectangle.Height;
                 _velocity.Y = 0f;
             }
-            if (_rectangle.TouchLeftOf(newRectangle))
-            {
-                _positie.X = newRectangle.X - _rectangle.Width;
-            }
-            if (_rectangle.TouchRightOf(newRectangle))
-            {
-                _positie.X = newRectangle.X + 17;
-            }
-            if (_rectangle.TouchBottomOf(newRectangle))
-            {
-                _velocity.Y = 1f;
-            }
+          
 
             /*if (_positie.X < 0) _positie.X = 0;
             if (_positie.X > xOffset - _rectangle.Width) _positie.X = xOffset - _rectangle.Width;

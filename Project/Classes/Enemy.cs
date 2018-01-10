@@ -20,12 +20,15 @@ namespace Project
         public Animation _animation;
         public Vector2 origin;
         public float rotation = 0f;
+        private SpriteEffects flip;
         public bool right;
         public float distance;
         public float oldDistance;
         public bool isMoving = true;
+        public bool isVisible = true;
+        public int health;
 
-        public Enemy(Texture2D texture, Vector2 newposition)
+        public Enemy(Texture2D texture, Vector2 newposition, int newHealth)
         {
             _texture = texture;
             _position = newposition;
@@ -34,7 +37,10 @@ namespace Project
             _animation.AddFrame(new Rectangle(75, 0, 75, 55));
             _animation.AddFrame(new Rectangle(150, 0, 75, 55));
             _animation.AddFrame(new Rectangle(225, 0, 75, 55));
-            _animation.aantalBewegingenPerSec = 8;
+            _animation.aantalBewegingenPerSec = 4;
+            health = newHealth;
+            flip = SpriteEffects.None;
+            isVisible = true;
         }
 
         public void Update(GameTime gameTime, SoundEffect soundEffect)
@@ -52,6 +58,7 @@ namespace Project
 
 
             _animation.Update(gameTime);
+           
 
 
 
@@ -91,16 +98,25 @@ namespace Project
         public void MoveEnemyAround(int leftCollision, int rightCollision)
         {
             
-                if (this._position.X == leftCollision)
-                     this._velocity.X--;
-                else if (this._position.X == rightCollision)
-                    this._velocity.X++;
-            
+                if (_position.X == leftCollision)
+            {
+                _velocity.X--;
+                flip = SpriteEffects.FlipHorizontally;
+            }
+            else if (_position.X == rightCollision)
+            {
+                _velocity.X++;
+                flip = SpriteEffects.None;
+            }
+
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, SpriteEffects spriteEffects)
         {
-            spriteBatch.Draw(_texture, _position, _animation.currentFrame.SourceRectangle, Color.White);
+            Rectangle destinationRect = new Rectangle((int)_position.X, (int)_position.Y, _animation.currentFrame.SourceRectangle.Width, _animation.currentFrame.SourceRectangle.Height);
+            spriteBatch.Draw(texture: _texture, destinationRectangle: destinationRect, sourceRectangle: _animation.currentFrame.SourceRectangle, color: Color.White, rotation: 0f, origin: new Vector2(0, 0), effects: flip, layerDepth: 0f);
+        //    if (health >= 1)
+                //spriteBatch.Draw(_texture, _position, _animation.currentFrame.SourceRectangle, Color.White);
         }
     }
 }

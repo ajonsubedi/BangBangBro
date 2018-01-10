@@ -12,7 +12,7 @@ namespace Project
     class Tile
     {
         public Texture2D texture;
-        private Rectangle rectangle;
+        public Rectangle rectangle;
 
         public Rectangle Rectangle
         {
@@ -38,7 +38,7 @@ namespace Project
         public CollisionTiles(int i, Rectangle newRectangle)
         {
             texture = Content.Load<Texture2D>("tileSheet/tile" + i);
-            this.Rectangle = newRectangle;
+            Rectangle = newRectangle;
         }
     }
 }

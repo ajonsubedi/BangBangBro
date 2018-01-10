@@ -121,7 +121,7 @@ namespace Project
 
         public  void Draw(SpriteBatch spriteBatch)
         {
-            if(health > 1)
+            if(health >= 1 || _position.Y > 0)
             spriteBatch.Draw(_texture, _position, _animation.currentFrame.SourceRectangle, Color.White);
 
         }
