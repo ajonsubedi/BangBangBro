@@ -275,42 +275,8 @@ namespace Project
             TurnOffSoundOnLadder();
             enemies[0].MoveEnemyAround(780, 510);
             enemies[1].MoveEnemyAround(1330, 1130);
-
-
-
-            if (!heroRight.isMoving)
-            {
-                ShootRight();
-            }
             UpdateBullets();
-
-            if (!heroLeft.isMoving)
-            {
-                ShootLeft();
-            }
-               
-            /*foreach (Bullet bullet in bullets)
-            {
-                bullet.Update();
-                foreach (Enemy enemy in enemies)
-                {
-                    if (bullet._position.X == enemy._position.X)
-                    {
-                        Console.WriteLine("Health van enemy is " + enemy.health);
-                        enemy.health -= 40;
-
-                    }
-                    for (int i = 0; i < enemies.Count; i++)
-                    {
-                        enemies.RemoveAt(i);
-                    }
-                }
-               
-            }*/
-
-
-
-
+            ShootRight();
             base.Update(gameTime);
         }
 
@@ -608,7 +574,7 @@ namespace Project
 
        
 
-        public void ShootBulletRightUpdate()
+        public void ShootBullet()
         {
             Bullet newBullet = new Bullet(Content.Load<Texture2D>("bullet"));
             newBullet._position.X = heroRight._position.X;
@@ -619,35 +585,17 @@ namespace Project
                 bullets.Add(newBullet);
         }
 
-        public void ShootBulletLeftUpdate()
-        {
-            Bullet newBullet = new Bullet(Content.Load<Texture2D>("bullet"));
-            newBullet._position.X = heroLeft._position.X;
-            newBullet._position.Y = heroLeft._position.Y + heroLeft._texture.Height / 4;
-            newBullet.isVisible = true;
-
-            if (bullets.Count < 2)
-                bullets.Add(newBullet);
-        }
+       
 
         public void ShootRight()
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
             {
-                ShootBulletRightUpdate();
+                ShootBullet();
                 
             }
         }
-        public void ShootLeft()
-        {
-           
-                if (Keyboard.GetState().IsKeyDown(Keys.Space))
-                {
-                    ShootBulletLeftUpdate();
-                }
-            
-            
-        }
+       
 
 
 
