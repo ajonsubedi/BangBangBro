@@ -11,6 +11,7 @@ namespace Project
 {
     class World
     {
+        public bool isVisible = true;
         private List<CollisionTiles> collisionTiles = new List<CollisionTiles>();
         public List<CollisionTiles> CollisionTiles
         {

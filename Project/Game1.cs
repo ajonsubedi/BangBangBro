@@ -47,7 +47,6 @@ namespace Project
         Background background;
         Ladder ladder;
         List<Bullet> bullets = new List<Bullet>();
-        public float bulletDelay ;
 
         enum GameState
         {
@@ -89,6 +88,7 @@ namespace Project
         /// </summary>
         protected override void LoadContent()
         {
+
             camera.Position = camPos;
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -151,8 +151,8 @@ namespace Project
             enemy1RightTexture = Content.Load<Texture2D>("enemy/enemyRight");
             enemy1LeftTexture = Content.Load<Texture2D>("enemy/enemyleft");
 
-            enemies.Add(new Enemy(enemy1RightTexture, new Vector2(510, 0), 100));
-            enemies.Add(new Enemy(enemy1RightTexture, new Vector2(1130, 0), 100));
+            enemies.Add(new Enemy(enemy1RightTexture, new Vector2(510, 0), 10));
+            enemies.Add(new Enemy(enemy1RightTexture, new Vector2(1130, 0), 10));
 
 
             //COIN
@@ -234,8 +234,9 @@ namespace Project
 
             //BULLET
            bulletTexture = Content.Load<Texture2D>("bullet");
+            bullets.Add(new Bullet(bulletTexture));
 
-
+           
             // TODO: use this.Content to load your game content here
         }
 
@@ -255,11 +256,14 @@ namespace Project
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+
             IsMouseVisible = true;
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
+            
+
             score._scorePos = scorePos;
             camera.Update(heroRight._position, heroRight._viewRect);
             heroRight.Update(gameTime, soundEffect);
@@ -275,8 +279,22 @@ namespace Project
             TurnOffSoundOnLadder();
             enemies[0].MoveEnemyAround(780, 510);
             enemies[1].MoveEnemyAround(1330, 1130);
-            UpdateBullets();
             ShootRight();
+            UpdateBullets();
+            foreach (Bullet bullet in bullets)
+            {
+                enemies[0].Damage(bullet._rectangle);
+            }
+            //HitEnemy();
+            TestCollision();
+            for (int i = 0; i < bullets.Count; i++)
+            {
+                if (!bullets[i].isVisible)
+                {
+                    bullets.RemoveAt(i);
+                    i--;
+                }
+            }
             base.Update(gameTime);
         }
 
@@ -286,6 +304,7 @@ namespace Project
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
@@ -554,35 +573,35 @@ namespace Project
                 bullet._position.X += bullet._velocity.X;
                 bullet._velocity.X += 1; //snelheid
                 if (bullet._position.X > screenWidth)
+                {
                     bullet.isVisible = false;
-                foreach (Enemy enemy in enemies)
-                {
-                    if (bullet._rectangle.Intersects(enemy._viewRect))
-                        bullet.isVisible = false;
                 }
-               
+                //foreach (Enemy enemy in enemies)
+                //{
+                //    if (bullet._rectangle.Intersects(enemy._viewRect))
+                //    {
+                //        bullet.isVisible = false;
+                //        Console.WriteLine("bullet verdwijnt");
+                //    }
+
+
+                //}
+
             }
-            for (int i = 0; i < bullets.Count; i++)
-            {
-                if (!bullets[i].isVisible)
-                {
-                    bullets.RemoveAt(i);
-                    i--;
-                }
-            }
+            
         }
 
        
 
         public void ShootBullet()
         {
-            Bullet newBullet = new Bullet(Content.Load<Texture2D>("bullet"));
-            newBullet._position.X = heroRight._position.X;
-            newBullet._position.Y = heroRight._position.Y + heroRight._texture.Height / 4;
-            newBullet.isVisible = true;
+            Bullet nBullet = new Bullet(Content.Load<Texture2D>("bullet"));
+            nBullet._position.X = heroRight._position.X;
+            nBullet._position.Y = heroRight._position.Y + heroRight._texture.Height / 4;
+            nBullet.isVisible = true;
 
             if (bullets.Count < 2)
-                bullets.Add(newBullet);
+                bullets.Add(nBullet);
         }
 
        
@@ -596,6 +615,29 @@ namespace Project
             }
         }
        
+        //public void HitEnemy()
+        //{
+        //    foreach (Bullet bullet in bullets)
+        //    {
+        //        foreach (Enemy enemy in enemies)
+        //        {
+        //            if (enemy._viewRect.Intersects(bullet._rectangle))
+        //            {
+        //                enemy.health--;
+        //                Console.WriteLine("health van enemy is " + enemy.health);
+        //            }
+        //        }
+        //    }
+        //}
+
+        public void TestCollision()
+        {
+            foreach (Bullet bullet in bullets)
+            {
+                if(enemies[0]._viewRect.Intersects(bullet._rectangle))
+                    Console.WriteLine("collision van bullet met enemy");
+            }
+        }
 
 
 

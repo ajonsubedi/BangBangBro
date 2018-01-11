@@ -16,6 +16,8 @@ namespace Project
         public bool isVisible;
         public Rectangle _rectangle;
         public int speed;
+        private SpriteEffects flip;
+
         public Bullet(Texture2D texture)
         {
             _position = new Vector2(0, 0);

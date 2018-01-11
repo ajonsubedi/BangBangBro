@@ -52,7 +52,7 @@ namespace Project
             
 
 
-            _viewRect = new Rectangle((int)_position.X, (int)_position.Y, 48, 56);
+            _viewRect = new Rectangle((int)_position.X, (int)_position.Y, 75, 55);
             if (_velocity.Y < 10)
                 _velocity.Y += 0.4f;
 
@@ -117,6 +117,15 @@ namespace Project
             if (health >= 1)
                 spriteBatch.Draw(texture: _texture, destinationRectangle: destinationRect, sourceRectangle: _animation.currentFrame.SourceRectangle, color: Color.White, rotation: 0f, origin: new Vector2(0, 0), effects: flip, layerDepth: 0f);
            
+        }
+
+        public void Damage(Rectangle bRect)
+        {
+            if (_viewRect.Intersects(bRect))
+            {
+                health--;
+                Console.WriteLine("health van enemy is: " + health);
+            }
         }
     }
 }

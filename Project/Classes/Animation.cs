@@ -47,7 +47,7 @@ namespace Project
             x += temp;
             if(x >= currentFrame.SourceRectangle.Width / aantalBewegingenPerSec)
             {
-                Console.WriteLine(x);
+                //Console.WriteLine(x);
                 x = 0;
                 counter++;
                 if(counter >= frames.Count)
