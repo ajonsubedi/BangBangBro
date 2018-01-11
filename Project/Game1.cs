@@ -29,6 +29,7 @@ namespace Project
         Texture2D ladderTexture;
         Texture2D healthBarRedTexture, healthBarGreenTexture;
         Texture2D healthTexture;
+        Texture2D bulletTexture;
         Rectangle healthBarGreenRect, healthBarRedRect;
         Song backgroundMusic;
         SoundEffect soundEffect;
@@ -46,6 +47,7 @@ namespace Project
         Background background;
         Ladder ladder;
         List<Bullet> bullets = new List<Bullet>();
+        public float bulletDelay ;
 
         enum GameState
         {
@@ -230,6 +232,9 @@ namespace Project
             //MAP
             DrawLevel1();
 
+            //BULLET
+           bulletTexture = Content.Load<Texture2D>("bullet");
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -270,18 +275,21 @@ namespace Project
             TurnOffSoundOnLadder();
             enemies[0].MoveEnemyAround(780, 510);
             enemies[1].MoveEnemyAround(1330, 1130);
-            /*if (!heroRight.isMoving)
+
+
+
+            if (!heroRight.isMoving)
             {
                 ShootRight();
             }
-            
-            else if (!heroLeft.isMoving)
+            UpdateBullets();
+
+            if (!heroLeft.isMoving)
             {
                 ShootLeft();
             }
                
-            UpdateBullets();
-            foreach (Bullet bullet in bullets)
+            /*foreach (Bullet bullet in bullets)
             {
                 bullet.Update();
                 foreach (Enemy enemy in enemies)
@@ -297,7 +305,7 @@ namespace Project
                         enemies.RemoveAt(i);
                     }
                 }
-                
+               
             }*/
 
 
@@ -407,7 +415,7 @@ namespace Project
 
         //FUNCTIES
 
-        public void UpdateEnemy(GameTime gameTime)
+        public void UpdateEnemy(GameTime gameTime)   //Hiermee wordt de enemy geupdate, en de health van de hero daalt als er een collision is met de enemy
         {
             foreach (Enemy enemy in enemies)
             {
@@ -421,18 +429,18 @@ namespace Project
             }
         }
 
-        public void UpdateCoin(GameTime gameTime)
+        public void UpdateCoin(GameTime gameTime) //Coins worden geupdate om ze te laten draaien en verwijderen als de player het oppakt.
         {
             foreach (Coin coin in coins)
             {
                 coin.Update(gameTime);
             }
-            coins[0]._positie.X = heroRight._position.X;
+            coins[0]._positie.X = heroRight._position.X; //1 coin aan de top laten zien voor score
             coins[0]._positie.Y = 0;
             coins[0].isRemoved = false;
         }
 
-        public void ScoreCounter()
+        public void ScoreCounter() //hiermee wordt de score opgeteld en de coin verwijderd uit de lijst
         {
             for (int i = 0; i < coins.Count; i++)
             {
@@ -445,7 +453,7 @@ namespace Project
         }
 
 
-        public void Collision(GameTime gameTime)
+        public void Collision(GameTime gameTime) //Collision met tiles
         {
             foreach (CollisionTiles tile in map.CollisionTiles)
             {
@@ -474,7 +482,7 @@ namespace Project
             }
         }
 
-        public void ChangingGameState()
+        public void ChangingGameState() //Van state veranderen, bv. Menu, Game Over, Instructions en Playing
         {
             MouseState mouse = Mouse.GetState();
             switch (CurrentGameState)
@@ -510,7 +518,7 @@ namespace Project
             else SoundEffect.MasterVolume = 1;
         }
 
-        public void DrawLevel1()
+        public void DrawLevel1() //Level 1 wordt gecreërd
         {
             map.Generate(new int[,]
            {
@@ -557,14 +565,33 @@ namespace Project
 
 
         //BULLET FUNCTIONS
-        /*public void UpdateBullets()
+
+
+       /* public void Shoot() //Bullet schieten
+        {
+          
+            Bullet nBullet = new Bullet(bulletTexture);
+            nBullet._position = new Vector2(heroRight._position.X + 32 - nBullet._texture.Width / 2, heroRight._position.Y + 30);
+            nBullet._velocity.X += 10f;
+            nBullet.isVisible = true;
+            if (bullets.Count < 10)
+            {
+                bullets.Add(nBullet);
+            }
+
+        }*/
+
+        public void UpdateBullets() //Als de bullet de enemy raakt, wordt de bullet van de lijst verwijderd
         {
             foreach (Bullet bullet in bullets)
             {
-                bullet._position += bullet._velocity;
+                bullet._position.X += bullet._velocity.X;
+                bullet._velocity.X += 1; //snelheid
+                if (bullet._position.X > screenWidth)
+                    bullet.isVisible = false;
                 foreach (Enemy enemy in enemies)
                 {
-                    if (Vector2.Distance(bullet._position, heroRight._position) > enemy._position.X)
+                    if (bullet._rectangle.Intersects(enemy._viewRect))
                         bullet.isVisible = false;
                 }
                
@@ -579,27 +606,27 @@ namespace Project
             }
         }
 
+       
+
         public void ShootBulletRightUpdate()
         {
             Bullet newBullet = new Bullet(Content.Load<Texture2D>("bullet"));
-            newBullet._velocity.X +=10;
             newBullet._position.X = heroRight._position.X;
             newBullet._position.Y = heroRight._position.Y + heroRight._texture.Height / 4;
             newBullet.isVisible = true;
 
-            if (bullets.Count < 100)
+            if (bullets.Count < 2)
                 bullets.Add(newBullet);
         }
 
         public void ShootBulletLeftUpdate()
         {
             Bullet newBullet = new Bullet(Content.Load<Texture2D>("bullet"));
-            newBullet._velocity.X -= 10;
             newBullet._position.X = heroLeft._position.X;
             newBullet._position.Y = heroLeft._position.Y + heroLeft._texture.Height / 4;
             newBullet.isVisible = true;
 
-            if (bullets.Count < 100)
+            if (bullets.Count < 2)
                 bullets.Add(newBullet);
         }
 
@@ -608,18 +635,22 @@ namespace Project
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
             {
                 ShootBulletRightUpdate();
+                
             }
         }
         public void ShootLeft()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            {
-                ShootBulletLeftUpdate();
-            }
+           
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                {
+                    ShootBulletLeftUpdate();
+                }
+            
+            
         }
 
 
 
-    }*/
     }
-}
+    }
+

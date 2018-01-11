@@ -15,9 +15,13 @@ namespace Project
         public Vector2 _position, _velocity, origin;
         public bool isVisible;
         public Rectangle _rectangle;
+        public int speed;
         public Bullet(Texture2D texture)
         {
+            _position = new Vector2(0, 0);
+            _rectangle = new Rectangle((int)_position.X, (int)_position.Y, 25, 25);
             _texture = texture;
+            speed = 10;
             isVisible = false;
         }
 

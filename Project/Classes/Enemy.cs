@@ -114,9 +114,9 @@ namespace Project
         public void Draw(SpriteBatch spriteBatch, SpriteEffects spriteEffects)
         {
             Rectangle destinationRect = new Rectangle((int)_position.X, (int)_position.Y, _animation.currentFrame.SourceRectangle.Width, _animation.currentFrame.SourceRectangle.Height);
-            spriteBatch.Draw(texture: _texture, destinationRectangle: destinationRect, sourceRectangle: _animation.currentFrame.SourceRectangle, color: Color.White, rotation: 0f, origin: new Vector2(0, 0), effects: flip, layerDepth: 0f);
-        //    if (health >= 1)
-                //spriteBatch.Draw(_texture, _position, _animation.currentFrame.SourceRectangle, Color.White);
+            if (health >= 1)
+                spriteBatch.Draw(texture: _texture, destinationRectangle: destinationRect, sourceRectangle: _animation.currentFrame.SourceRectangle, color: Color.White, rotation: 0f, origin: new Vector2(0, 0), effects: flip, layerDepth: 0f);
+           
         }
     }
 }
