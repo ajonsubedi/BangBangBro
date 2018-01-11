@@ -16,7 +16,6 @@ namespace Project
         public bool isVisible;
         public Rectangle _rectangle;
         public int speed;
-        private SpriteEffects flip;
 
         public Bullet(Texture2D texture)
         {
@@ -27,13 +26,32 @@ namespace Project
             isVisible = false;
         }
 
-        public void Update()
+        public void Update(GraphicsDeviceManager graphics)
         {
-            _rectangle = new Rectangle((int)_position.X, (int)_position.Y, 25, 25);
-            _rectangle.X += 25;
-            if (_rectangle.X > 25)
-                _rectangle.X = 0;
-            _position.X++;
+            //_rectangle = new Rectangle((int)_position.X, (int)_position.Y, 25, 25);
+            //_rectangle.X += 25;
+            //if (_rectangle.X > 25)
+            //    _rectangle.X = 0;
+            //_position.X++;
+
+
+            _position.X += _velocity.X;
+            _velocity.X += 1; //snelheid
+            if (_position.X > graphics.PreferredBackBufferWidth)
+            {
+                isVisible = false;
+            }
+
+            //foreach (Enemy enemy in enemies)
+            //{
+            //    if (bullet._rectangle.Intersects(enemy._viewRect))
+            //    {
+            //        bullet.isVisible = false;
+            //        Console.WriteLine("bullet verdwijnt");
+            //    }
+
+
+            //}
 
         }
 

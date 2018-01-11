@@ -54,6 +54,7 @@
     <Compile Include="Classes\Controls.cs" />
     <Compile Include="Classes\Enemy.cs" />
     <Compile Include="Classes\Functies.cs" />
+    <Compile Include="Classes\GoToNextLevel.cs" />
     <Compile Include="Classes\Ladder.cs" />
     <Compile Include="Classes\Level1.cs" />
     <Compile Include="Classes\RectangleHelper.cs" />

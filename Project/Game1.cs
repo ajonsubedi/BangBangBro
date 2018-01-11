@@ -17,38 +17,50 @@ namespace Project
     public class Game1 : Game
     {
         //ALLE VARIABELEN
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+
+        //Hier komen alle textures
+        Texture2D heroRightTexture, heroLeftTexture; //Hero textures
+        Texture2D enemy1RightTexture, enemy1LeftTexture; //Enemy textures
+        Texture2D coinTexture, bulletTexture, ladderTexture, goToNextLevelTexture; //Other textures
+        Texture2D btnPlayTexture, btnInstructionTexture, btnBackTexture, btnPlayAgainTexture; //Button textures
+        Texture2D backgroundTexture; //Background textures
+        Texture2D healthBarRedTexture, healthBarGreenTexture, healthTexture; //HealthTextures
+
+        //Hier komen alle objecten
         World map = new World();
         Hero heroRight, heroLeft;
-        Texture2D heroRightTexture, heroLeftTexture;
-        Texture2D enemy1RightTexture, enemy1LeftTexture;
-        Texture2D coinTexture;
-        Texture2D btnPlayTexture, btnInstructionTexture, btnBackTexture, btnPlayAgainTexture;
-        Texture2D backgroundTexture;
-        Texture2D ladderTexture;
-        Texture2D healthBarRedTexture, healthBarGreenTexture;
-        Texture2D healthTexture;
-        Texture2D bulletTexture;
-        Rectangle healthBarGreenRect, healthBarRedRect;
-        Song backgroundMusic;
-        SoundEffect soundEffect;
         Camera2D camera;
+        Song backgroundMusic;
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
+        SoundEffect soundEffect;
         Viewport viewport;
-        Vector2 camPos = new Vector2();
         List<Coin> coins = new List<Coin>();
-        Random rnd = new Random();
-        List<Enemy> enemies = new List<Enemy>();
-        static Score score;
-        static SpriteFont scoreFont;
-        static Vector2 scorePos;
         Button btnPlay, btnInstruction, btnBack, btnPlayAgain;
+        List<Bullet> bullets = new List<Bullet>();
         Tile tile = new Tile();
         Background background;
         Ladder ladder;
-        List<Bullet> bullets = new List<Bullet>();
+        List<Enemy> enemies = new List<Enemy>();
+        GoToNextLevel goToNextLevel;
 
-        enum GameState
+        //Hier komen alle variabelen
+        static Score score;
+        static SpriteFont scoreFont;
+        static Vector2 scorePos;
+        int screenWidth = 1920, screenHeight = 1050;
+
+
+        //Hier komen alle rectangles
+        Rectangle healthBarGreenRect, healthBarRedRect;
+
+        //Hier komen alle vectoren
+        Vector2 camPos = new Vector2();
+
+
+
+
+        enum GameState //De gamestate word bepaald.
         {
             MainMenu,
             Instructions,
@@ -58,7 +70,6 @@ namespace Project
 
         GameState CurrentGameState = GameState.MainMenu;
 
-        int screenWidth = 1920, screenHeight = 1050;
 
         public Game1()
         {
@@ -163,45 +174,17 @@ namespace Project
 
 
 
-            //COINS
-            coins.Add(new Coin(coinTexture, new Vector2(360, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(390, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(420, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(450, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(480, 0)));
-
-            coins.Add(new Coin(coinTexture, new Vector2(630, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(660, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(690, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(720, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(750, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(780, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(810, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(840, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(870, 0)));
-
-            coins.Add(new Coin(coinTexture, new Vector2(1140, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(1170, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(1200, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(1230, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(1260, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(1290, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(1320, 0)));
-
-            coins.Add(new Coin(coinTexture, new Vector2(1470, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(1500, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(1530, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(1560, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(1590, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(1620, 0)));
-            coins.Add(new Coin(coinTexture, new Vector2(1650, 0)));
 
 
 
 
+            //COIN
+            AddCoins();
 
 
-
+            //Go to next level
+            goToNextLevelTexture = Content.Load<Texture2D>("gotonextlevel");
+            goToNextLevel = new GoToNextLevel(goToNextLevelTexture, new Vector2(1800, 697));
 
 
 
@@ -230,13 +213,13 @@ namespace Project
 
 
             //MAP
-            DrawLevel1();
+            map.DrawLevel1();
 
             //BULLET
-           bulletTexture = Content.Load<Texture2D>("bullet");
+            bulletTexture = Content.Load<Texture2D>("bullet");
             bullets.Add(new Bullet(bulletTexture));
 
-           
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -262,7 +245,7 @@ namespace Project
                 Exit();
 
             // TODO: Add your update logic here
-            
+
 
             score._scorePos = scorePos;
             camera.Update(heroRight._position, heroRight._viewRect);
@@ -271,7 +254,14 @@ namespace Project
             healthBarGreenRect = new Rectangle((int)heroRight._position.X + 150, 10, heroRight.health, 10);
             healthBarRedRect = new Rectangle((int)heroRight._position.X + 150, 10, 100, 10);
             UpdateEnemy(gameTime);
-            UpdateCoin(gameTime);
+            foreach (Coin coin in coins) //coin laten draaien
+            {
+                coin.Update(gameTime);
+            }
+            coins[0]._positie.X = heroRight._position.X; //1 coin aan de top laten zien voor score
+            coins[0]._positie.Y = 0;
+            coins[0].isRemoved = false;
+
             scorePos.X = heroRight._position.X + 35;
             ScoreCounter();
             Collision(gameTime);
@@ -280,14 +270,13 @@ namespace Project
             enemies[0].MoveEnemyAround(780, 510);
             enemies[1].MoveEnemyAround(1330, 1130);
             ShootRight();
-            UpdateBullets();
-            foreach (Bullet bullet in bullets)
+            foreach (Bullet bullet in bullets) //update voor bullet
             {
-                enemies[0].Damage(bullet._rectangle);
+                enemies[0].GetDamage(bullet._rectangle);
+                bullet.Update(graphics);
             }
-            //HitEnemy();
-            TestCollision();
-            for (int i = 0; i < bullets.Count; i++)
+
+            for (int i = 0; i < bullets.Count; i++) //Verwijder bullet uit lijst als bullet.isVisible = false;
             {
                 if (!bullets[i].isVisible)
                 {
@@ -295,6 +284,7 @@ namespace Project
                     i--;
                 }
             }
+            GoToNextLevel();
             base.Update(gameTime);
         }
 
@@ -304,7 +294,7 @@ namespace Project
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            
+
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
@@ -364,7 +354,7 @@ namespace Project
                     spriteBatch.Draw(healthBarRedTexture, healthBarRedRect, Color.White);
                     spriteBatch.Draw(healthBarGreenTexture, healthBarGreenRect, Color.White);
                     spriteBatch.Draw(healthTexture, new Rectangle((int)heroRight._position.X + 115, 0, 30, 30), Color.White);
-
+                    goToNextLevel.Draw(spriteBatch);
 
                     break;
                 case GameState.Instructions:
@@ -408,22 +398,34 @@ namespace Project
                 if (heroRight._viewRect.Intersects(enemy._viewRect))
                 {
                     heroRight.health--;
-                    heroLeft.health--;
 
                 }
             }
         }
 
-        public void UpdateCoin(GameTime gameTime) //Coins worden geupdate om ze te laten draaien en verwijderen als de player het oppakt.
+        public void GoToNextLevel()
         {
-            foreach (Coin coin in coins)
+            if(heroRight._viewRect.Intersects(goToNextLevel._rectangle))
             {
-                coin.Update(gameTime);
+                Console.WriteLine("volgende level begiint");
+                Reset();
+                map.ClearMap();
+                map.DrawLevel2();
             }
-            coins[0]._positie.X = heroRight._position.X; //1 coin aan de top laten zien voor score
-            coins[0]._positie.Y = 0;
-            coins[0].isRemoved = false;
         }
+
+        public void Reset() //Alles wordt terug gereset
+        {
+            heroRight.health = 100;
+            score._score = 0;
+            heroRight._position.X = 0;
+            heroRight._position.Y = 0;
+            heroLeft._position.X = 0;
+            heroRight._position.Y = 0;
+            //enemies.Clear();
+        }
+
+       
 
         public void ScoreCounter() //hiermee wordt de score opgeteld en de coin verwijderd uit de lijst
         {
@@ -481,7 +483,10 @@ namespace Project
                     break;
                 case GameState.Playing:
                     if (heroRight.health < 0)
+                    {
                         CurrentGameState = GameState.GameOver;
+                        AddCoins();
+                    }
                     break;
                 case GameState.Instructions:
                     if (btnBack.isClicked == true) CurrentGameState = GameState.MainMenu;
@@ -490,6 +495,8 @@ namespace Project
                 case GameState.GameOver:
                     if (btnPlayAgain.isClicked == true) CurrentGameState = GameState.Playing;
                     btnPlayAgain.Update(mouse);
+                    Reset();
+
                     break;
             }
         }
@@ -503,101 +510,16 @@ namespace Project
             else SoundEffect.MasterVolume = 1;
         }
 
-        public void DrawLevel1() //Level 1 wordt gecreërd
-        {
-            map.Generate(new int[,]
-           {
-
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           {1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
-           {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}
-
-           }, 30);
-
-        }
+        
 
 
         //BULLET FUNCTIONS
-
-
-       /* public void Shoot() //Bullet schieten
-        {
-          
-            Bullet nBullet = new Bullet(bulletTexture);
-            nBullet._position = new Vector2(heroRight._position.X + 32 - nBullet._texture.Width / 2, heroRight._position.Y + 30);
-            nBullet._velocity.X += 10f;
-            nBullet.isVisible = true;
-            if (bullets.Count < 10)
-            {
-                bullets.Add(nBullet);
-            }
-
-        }*/
-
-        public void UpdateBullets() //Als de bullet de enemy raakt, wordt de bullet van de lijst verwijderd
-        {
-            foreach (Bullet bullet in bullets)
-            {
-                bullet._position.X += bullet._velocity.X;
-                bullet._velocity.X += 1; //snelheid
-                if (bullet._position.X > screenWidth)
-                {
-                    bullet.isVisible = false;
-                }
-                //foreach (Enemy enemy in enemies)
-                //{
-                //    if (bullet._rectangle.Intersects(enemy._viewRect))
-                //    {
-                //        bullet.isVisible = false;
-                //        Console.WriteLine("bullet verdwijnt");
-                //    }
-
-
-                //}
-
-            }
-            
-        }
-
-       
-
         public void ShootBullet()
         {
             Bullet nBullet = new Bullet(Content.Load<Texture2D>("bullet"));
             nBullet._position.X = heroRight._position.X;
             nBullet._position.Y = heroRight._position.Y + heroRight._texture.Height / 4;
+            nBullet._velocity.X += 10f;
             nBullet.isVisible = true;
 
             if (bullets.Count < 2)
@@ -614,33 +536,41 @@ namespace Project
                 
             }
         }
-       
-        //public void HitEnemy()
-        //{
-        //    foreach (Bullet bullet in bullets)
-        //    {
-        //        foreach (Enemy enemy in enemies)
-        //        {
-        //            if (enemy._viewRect.Intersects(bullet._rectangle))
-        //            {
-        //                enemy.health--;
-        //                Console.WriteLine("health van enemy is " + enemy.health);
-        //            }
-        //        }
-        //    }
-        //}
 
-        public void TestCollision()
+        public void AddCoins()
         {
-            foreach (Bullet bullet in bullets)
-            {
-                if(enemies[0]._viewRect.Intersects(bullet._rectangle))
-                    Console.WriteLine("collision van bullet met enemy");
-            }
+            coins.Add(new Coin(coinTexture, new Vector2(360, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(390, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(420, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(450, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(480, 0)));
+
+            coins.Add(new Coin(coinTexture, new Vector2(630, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(660, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(690, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(720, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(750, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(780, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(810, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(840, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(870, 0)));
+
+            coins.Add(new Coin(coinTexture, new Vector2(1140, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1170, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1200, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1230, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1260, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1290, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1320, 0)));
+
+            coins.Add(new Coin(coinTexture, new Vector2(1470, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1500, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1530, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1560, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1590, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1620, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1650, 0)));
         }
-
-
-
     }
     }
 

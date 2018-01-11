@@ -119,12 +119,20 @@ namespace Project
            
         }
 
-        public void Damage(Rectangle bRect)
+        public void GetDamage(Rectangle bRect)
         {
             if (_viewRect.Intersects(bRect))
             {
                 health--;
                 Console.WriteLine("health van enemy is: " + health);
+            }
+        }
+
+        public void GiveDamage(Rectangle heroRect, int heroRightHealth)
+        {
+            if (heroRect.Intersects(_viewRect))
+            {
+                heroRightHealth--;
             }
         }
     }

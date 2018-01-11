@@ -25,6 +25,7 @@ namespace Project
         public Animation _animation;
         public bool isMoving = false;
         public int health;
+        private List<Bullet> bullets = new List<Bullet>();
 
         public Hero(Texture2D texture, Vector2 positie, Texture2D heroLeft, Texture2D heroRight, int newHealth)
         {
@@ -40,6 +41,7 @@ namespace Project
             _animation.AddFrame(new Rectangle(96, 0, 48, 56));
             _animation.aantalBewegingenPerSec = 8;
             health = newHealth;
+
         }
 
 
@@ -89,6 +91,8 @@ namespace Project
                 _animation.Update(gameTime);
             }
 
+            
+
         }
 
         public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
@@ -126,6 +130,10 @@ namespace Project
             spriteBatch.Draw(_texture, _position, _animation.currentFrame.SourceRectangle, Color.White);
 
         }
+
+        
+
+
 
     }
 }
