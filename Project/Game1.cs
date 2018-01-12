@@ -21,7 +21,7 @@ namespace Project
         //Hier komen alle textures
         Texture2D heroRightTexture, heroLeftTexture; //Hero textures
         Texture2D enemy1RightTexture, enemy1LeftTexture; //Enemy textures
-        Texture2D coinTexture, bulletTexture, ladderTexture, goToNextLevelTexture; //Other textures
+        Texture2D coinTexture, bulletTexture, ladderTexture, goToNextLevelTexture, keyTexture; //Other textures
         Texture2D btnPlayTexture, btnInstructionTexture, btnBackTexture, btnPlayAgainTexture; //Button textures
         Texture2D backgroundTexture; //Background textures
         Texture2D healthBarRedTexture, healthBarGreenTexture, healthTexture; //HealthTextures
@@ -42,13 +42,15 @@ namespace Project
         Background background;
         Ladder ladder;
         List<Enemy> enemies = new List<Enemy>();
-        GoToNextLevel goToNextLevel;
+        Sprite goToNextLevel;
+        List<Sprite> keys = new List<Sprite>();
 
         //Hier komen alle variabelen
         static Score score;
         static SpriteFont scoreFont;
         static Vector2 scorePos;
         int screenWidth = 1920, screenHeight = 1050;
+
 
 
         //Hier komen alle rectangles
@@ -179,12 +181,12 @@ namespace Project
 
 
             //COIN
-            AddCoins();
+            AddCoinsLevel1();
 
 
             //Go to next level
             goToNextLevelTexture = Content.Load<Texture2D>("gotonextlevel");
-            goToNextLevel = new GoToNextLevel(goToNextLevelTexture, new Vector2(1800, 697));
+            goToNextLevel = new Sprite(goToNextLevelTexture, new Vector2(1800, 697));
 
 
 
@@ -219,6 +221,16 @@ namespace Project
             bulletTexture = Content.Load<Texture2D>("bullet");
             bullets.Add(new Bullet(bulletTexture));
 
+            //KEY
+            keyTexture = Content.Load<Texture2D>("key");
+            keys.Add(new Sprite(keyTexture, new Vector2(685, 95)));
+            keys.Add(new Sprite(keyTexture, new Vector2(685, 95)));
+            keys.Add(new Sprite(keyTexture, new Vector2(685, 95)));
+            keys.Add(new Sprite(keyTexture, new Vector2(685, 95)));
+
+            //keys[0]._position.X = heroRight._position.X;
+            //keys[0]._position.Y = 0;
+            //keys[0].isVisible = true;
 
             // TODO: use this.Content to load your game content here
         }
@@ -285,6 +297,8 @@ namespace Project
                 }
             }
             GoToNextLevel();
+            GetKey();
+            
             base.Update(gameTime);
         }
 
@@ -355,7 +369,11 @@ namespace Project
                     spriteBatch.Draw(healthBarGreenTexture, healthBarGreenRect, Color.White);
                     spriteBatch.Draw(healthTexture, new Rectangle((int)heroRight._position.X + 115, 0, 30, 30), Color.White);
                     goToNextLevel.Draw(spriteBatch);
+                    foreach (Sprite key in keys)
+                    {
+                        key.Draw(spriteBatch);
 
+                    }
                     break;
                 case GameState.Instructions:
                     spriteBatch.Draw(Content.Load<Texture2D>("background/instructionPage"), new Rectangle(-175, 0, screenWidth, screenHeight), Color.White);
@@ -405,12 +423,18 @@ namespace Project
 
         public void GoToNextLevel()
         {
-            if(heroRight._viewRect.Intersects(goToNextLevel._rectangle))
+            if (heroRight._viewRect.Intersects(goToNextLevel._rectangle))
             {
                 Console.WriteLine("volgende level begiint");
-                Reset();
+                heroRight._position = Vector2.Zero;
+                heroLeft._position = Vector2.Zero;
                 map.ClearMap();
                 map.DrawLevel2();
+                ClearCoins();
+                AddCoinsLevel2();
+                ladder.MakeTransparant(spriteBatch);
+
+
             }
         }
 
@@ -418,14 +442,11 @@ namespace Project
         {
             heroRight.health = 100;
             score._score = 0;
-            heroRight._position.X = 0;
-            heroRight._position.Y = 0;
-            heroLeft._position.X = 0;
-            heroRight._position.Y = 0;
-            //enemies.Clear();
+            heroRight._position = Vector2.Zero;
+            heroLeft._position = Vector2.Zero;
         }
 
-       
+
 
         public void ScoreCounter() //hiermee wordt de score opgeteld en de coin verwijderd uit de lijst
         {
@@ -485,7 +506,10 @@ namespace Project
                     if (heroRight.health < 0)
                     {
                         CurrentGameState = GameState.GameOver;
-                        AddCoins();
+                        ClearCoins();
+                        AddCoinsLevel1();
+                        map.ClearMap();
+                        map.DrawLevel1();
                     }
                     break;
                 case GameState.Instructions:
@@ -510,7 +534,7 @@ namespace Project
             else SoundEffect.MasterVolume = 1;
         }
 
-        
+
 
 
         //BULLET FUNCTIONS
@@ -526,18 +550,18 @@ namespace Project
                 bullets.Add(nBullet);
         }
 
-       
+
 
         public void ShootRight()
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
             {
                 ShootBullet();
-                
+
             }
         }
 
-        public void AddCoins()
+        public void AddCoinsLevel1()
         {
             coins.Add(new Coin(coinTexture, new Vector2(360, 0)));
             coins.Add(new Coin(coinTexture, new Vector2(390, 0)));
@@ -571,6 +595,57 @@ namespace Project
             coins.Add(new Coin(coinTexture, new Vector2(1620, 0)));
             coins.Add(new Coin(coinTexture, new Vector2(1650, 0)));
         }
+
+        public void AddCoinsLevel2()
+        {
+            coins.Add(new Coin(coinTexture, new Vector2(200, 0)));//coin voor score
+
+
+            coins.Add(new Coin(coinTexture, new Vector2(420, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(450, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(480, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(510, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(540, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(570, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(600, 0)));
+
+            coins.Add(new Coin(coinTexture, new Vector2(930, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(960, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(990, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1020, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1050, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1080, 0)));
+            coins.Add(new Coin(coinTexture, new Vector2(1110, 0)));
+
+
+
+
+
+        }
+
+        public void ClearCoins()
+        {
+            coins.Clear();
+        }
+
+        public void GetKey()
+        {
+            foreach (Sprite key  in keys)
+            {
+                for (int i = 0; i < keys.Count; i++) //Verwijder key uit lijst als hero collision detecteert met de key;
+                {
+                    if (heroRight._viewRect.Intersects(key._rectangle))
+                    {
+                        keys.RemoveAt(i);
+                        i--;
+                    }
+                }
+            }
+            
+
+
+
+        }
     }
-    }
+}
 

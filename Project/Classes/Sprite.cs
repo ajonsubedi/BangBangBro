@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Project
 {
-    class GoToNextLevel
+    class Sprite
     {
-
         public Texture2D _texture;
         public Vector2 _position;
         public Rectangle _rectangle;
+        public bool isVisible = true;
 
-        public GoToNextLevel(Texture2D texture, Vector2 position)
+        public Sprite(Texture2D texture, Vector2 position)
         {
             _position = position;
             _rectangle = new Rectangle((int)_position.X, (int)_position.Y, 30, 30);
@@ -23,12 +23,12 @@ namespace Project
         }
 
 
-        
+
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_texture, _position, Color.White);
         }
+
+        
     }
 }
-
-

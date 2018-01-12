@@ -119,3 +119,4 @@ C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\G
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\tile1.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\tileSheet\tile2.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\gotonextlevel.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\key.xnb
