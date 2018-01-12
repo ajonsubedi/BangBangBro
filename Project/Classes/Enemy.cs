@@ -26,9 +26,8 @@ namespace Project
         public float oldDistance;
         public bool isMoving = true;
         public bool isVisible = true;
-        public int health;
 
-        public Enemy(Texture2D texture, Vector2 newposition, int newHealth)
+        public Enemy(Texture2D texture, Vector2 newposition)
         {
             _texture = texture;
             _position = newposition;
@@ -38,7 +37,6 @@ namespace Project
             _animation.AddFrame(new Rectangle(150, 0, 75, 55));
             _animation.AddFrame(new Rectangle(225, 0, 75, 55));
             _animation.aantalBewegingenPerSec = 4;
-            health = newHealth;
             flip = SpriteEffects.None;
             isVisible = true;
         }
@@ -114,7 +112,7 @@ namespace Project
         public void Draw(SpriteBatch spriteBatch, SpriteEffects spriteEffects)
         {
             Rectangle destinationRect = new Rectangle((int)_position.X, (int)_position.Y, _animation.currentFrame.SourceRectangle.Width, _animation.currentFrame.SourceRectangle.Height);
-            if (health >= 1)
+            if (isVisible == true)
                 spriteBatch.Draw(texture: _texture, destinationRectangle: destinationRect, sourceRectangle: _animation.currentFrame.SourceRectangle, color: Color.White, rotation: 0f, origin: new Vector2(0, 0), effects: flip, layerDepth: 0f);
            
         }
@@ -123,8 +121,8 @@ namespace Project
         {
             if (_viewRect.Intersects(bRect))
             {
-                health--;
-                Console.WriteLine("health van enemy is: " + health);
+                isVisible = false;
+                Console.WriteLine("enemy is dood");
             }
         }
 

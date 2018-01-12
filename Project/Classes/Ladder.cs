@@ -24,13 +24,9 @@ namespace Project
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if(isVisible == true)
             spriteBatch.Draw(_texture, _rectangle, Color.White);
         }
-        public void MakeTransparant(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-            spriteBatch.Draw(_texture, _rectangle, new Color(0,0,0));
-            spriteBatch.End();
-        }
+      
     }
 }

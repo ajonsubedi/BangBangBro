@@ -43,7 +43,7 @@ namespace Project
         Ladder ladder;
         List<Enemy> enemies = new List<Enemy>();
         Sprite goToNextLevel;
-        List<Sprite> keys = new List<Sprite>();
+       Sprite key;
 
         //Hier komen alle variabelen
         static Score score;
@@ -164,8 +164,8 @@ namespace Project
             enemy1RightTexture = Content.Load<Texture2D>("enemy/enemyRight");
             enemy1LeftTexture = Content.Load<Texture2D>("enemy/enemyleft");
 
-            enemies.Add(new Enemy(enemy1RightTexture, new Vector2(510, 0), 10));
-            enemies.Add(new Enemy(enemy1RightTexture, new Vector2(1130, 0), 10));
+            enemies.Add(new Enemy(enemy1RightTexture, new Vector2(510, 0)));
+            enemies.Add(new Enemy(enemy1RightTexture, new Vector2(1130, 0)));
 
 
             //COIN
@@ -223,10 +223,8 @@ namespace Project
 
             //KEY
             keyTexture = Content.Load<Texture2D>("key");
-            keys.Add(new Sprite(keyTexture, new Vector2(685, 95)));
-            keys.Add(new Sprite(keyTexture, new Vector2(685, 95)));
-            keys.Add(new Sprite(keyTexture, new Vector2(685, 95)));
-            keys.Add(new Sprite(keyTexture, new Vector2(685, 95)));
+            key = new Sprite(keyTexture, new Vector2(0, 1500));
+
 
             //keys[0]._position.X = heroRight._position.X;
             //keys[0]._position.Y = 0;
@@ -296,7 +294,11 @@ namespace Project
                     i--;
                 }
             }
-            GoToNextLevel();
+           // key.hasDisapeard = true;
+            if (heroRight._viewRect.Intersects(goToNextLevel._rectangle))
+            {
+                GoToNextLevel();
+            }
             GetKey();
             
             base.Update(gameTime);
@@ -369,11 +371,9 @@ namespace Project
                     spriteBatch.Draw(healthBarGreenTexture, healthBarGreenRect, Color.White);
                     spriteBatch.Draw(healthTexture, new Rectangle((int)heroRight._position.X + 115, 0, 30, 30), Color.White);
                     goToNextLevel.Draw(spriteBatch);
-                    foreach (Sprite key in keys)
-                    {
+                    
                         key.Draw(spriteBatch);
-
-                    }
+                    
                     break;
                 case GameState.Instructions:
                     spriteBatch.Draw(Content.Load<Texture2D>("background/instructionPage"), new Rectangle(-175, 0, screenWidth, screenHeight), Color.White);
@@ -423,19 +423,16 @@ namespace Project
 
         public void GoToNextLevel()
         {
-            if (heroRight._viewRect.Intersects(goToNextLevel._rectangle))
-            {
-                Console.WriteLine("volgende level begiint");
-                heroRight._position = Vector2.Zero;
-                heroLeft._position = Vector2.Zero;
-                map.ClearMap();
-                map.DrawLevel2();
-                ClearCoins();
-                AddCoinsLevel2();
-                ladder.MakeTransparant(spriteBatch);
+            Console.WriteLine("volgende level begiint");
+            heroRight._position = Vector2.Zero;
+            heroLeft._position = Vector2.Zero;
+            map.ClearMap();
+            map.DrawLevel2();
+            ClearCoins();
+            AddCoinsLevel2();
+            ladder.isVisible = false;
+            key = new Sprite(keyTexture, new Vector2(685, 95));
 
-
-            }
         }
 
         public void Reset() //Alles wordt terug gereset
@@ -444,6 +441,7 @@ namespace Project
             score._score = 0;
             heroRight._position = Vector2.Zero;
             heroLeft._position = Vector2.Zero;
+            key.hasDisapeard = true;
         }
 
 
@@ -630,22 +628,15 @@ namespace Project
 
         public void GetKey()
         {
-            foreach (Sprite key  in keys)
+            if (heroRight._viewRect.Intersects(key._rectangle))
             {
-                for (int i = 0; i < keys.Count; i++) //Verwijder key uit lijst als hero collision detecteert met de key;
-                {
-                    if (heroRight._viewRect.Intersects(key._rectangle))
-                    {
-                        keys.RemoveAt(i);
-                        i--;
-                    }
-                }
+                Console.WriteLine("hero raakt key");
+                key.hasDisapeard = true;
             }
             
-
-
-
+                
         }
-    }
+   }
 }
+
 
