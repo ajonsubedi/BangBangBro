@@ -20,7 +20,7 @@ namespace Project
 
         //Hier komen alle textures
         Texture2D heroRightTexture, heroLeftTexture; //Hero textures
-        Texture2D enemy1RightTexture; //Enemy textures
+        Texture2D enemy1RightTexture, mainBossTexture; //Enemy textures
         Texture2D coinTexture, bulletTexture, ladderTexture, goToNextLevelTexture, keyTexture, doorTexture; //Other textures
         Texture2D btnPlayTexture, btnInstructionTexture, btnBackTexture, btnPlayAgainTexture; //Button textures
         Texture2D backgroundTexture; //Background textures
@@ -45,11 +45,12 @@ namespace Project
         List<Enemy> enemiesLevel2 = new List<Enemy>();
         Sprite goToLevel2, key, restoreHealth; //extra sprites
         Door door;
+        MainBoss mainBoss;
 
         //Hier komen alle variabelen
-        static Score score;
-        static SpriteFont scoreFont;
-        static Vector2 scorePos;
+        static Score score, finalScore;
+        static SpriteFont scoreFont, finalScoreFont;
+        static Vector2 scorePos, finalScorePos;
         int screenWidth = 1920, screenHeight = 1050;
         int keyValue = 0;
 
@@ -176,6 +177,9 @@ namespace Project
             coins.Add(new Coin(coinTexture, new Vector2(0, 0)));
 
 
+            //MAINBOSS
+            mainBossTexture = Content.Load<Texture2D>("enemy/mainboss");
+            mainBoss = new MainBoss(mainBossTexture, new Vector2(1600, 0));
 
 
 
@@ -195,6 +199,10 @@ namespace Project
             scoreFont = Content.Load<SpriteFont>("fonts/scoreFont");
             scorePos = new Vector2(35, 0);
             score = new Score(scoreFont, scorePos);
+
+            finalScoreFont = Content.Load<SpriteFont>("fonts/finalScore");
+            finalScorePos = new Vector2(200, 200);
+            finalScore = new Score(finalScoreFont, finalScorePos);
 
 
 
@@ -261,12 +269,14 @@ namespace Project
 
 
             score._scorePos = scorePos;
+            finalScore._scorePos = scorePos;
             camera.Update(heroRight._position, heroRight._viewRect);
             heroRight.Update(gameTime, soundEffect);
             heroLeft.Update(gameTime, soundEffect);
             healthBarGreenRect = new Rectangle((int)heroRight._position.X + 150, 10, heroRight.health, 10);
             healthBarRedRect = new Rectangle((int)heroRight._position.X + 150, 10, 100, 10);
             UpdateEnemy(gameTime);
+            mainBoss.Update(gameTime, soundEffect);
             foreach (Coin coin in coins) //coin laten draaien
             {
                 coin.Update(gameTime);
@@ -301,10 +311,13 @@ namespace Project
             if (heroRight._viewRect.Intersects(goToLevel2._rectangle))
             {
                 GoToLevel2();
+                mainBoss.isVisible = true;
+                
             }
             GetKey();
             GetHealth();
             EndGame();
+            mainBoss.isVisible = false;
             
             base.Update(gameTime);
         }
@@ -379,6 +392,7 @@ namespace Project
                     key.Draw(spriteBatch);
                     restoreHealth.Draw(spriteBatch);
                     door.Draw(spriteBatch);
+                    mainBoss.Draw(spriteBatch, SpriteEffects.FlipHorizontally);
                     break;
                 case GameState.Instructions:
                     spriteBatch.Draw(Content.Load<Texture2D>("background/instructionPage"), new Rectangle(-175, 0, screenWidth, screenHeight), Color.White);
@@ -390,6 +404,8 @@ namespace Project
                 case GameState.GameOver:
                     spriteBatch.Draw(Content.Load<Texture2D>("background/gameOverPage"), new Rectangle(-175, 0, screenWidth, screenHeight), Color.White);
                     btnPlayAgain.Draw(spriteBatch);
+                    finalScore.Draw(spriteBatch);
+
                     break;
             }
 
@@ -446,8 +462,8 @@ namespace Project
             enemiesLevel2.Add(new Enemy(enemy1RightTexture, new Vector2(510, 0)));
             enemiesLevel2[0].MoveEnemyAround(780, 510);
             door = new Door(doorTexture, new Vector2(1770, 600));
-
-
+            mainBoss = new MainBoss(mainBossTexture, new Vector2(1600, 0));
+            mainBoss.isVisible = true;
 
 
 
@@ -497,6 +513,7 @@ namespace Project
                 {
                     enemy.Collision(gameTime, tile.Rectangle, map.Width, map.Height);
                 }
+                mainBoss.Collision(gameTime, tile.Rectangle, map.Width, map.Height);
 
 
 
@@ -533,7 +550,7 @@ namespace Project
                     {
                         CurrentGameState = GameState.GameOver;
                         ClearCoins();
-                        AddCoinsLevel1();
+                       // AddCoinsLevel1();
                         map.ClearMap();
                         map.DrawLevel1();
                     }
@@ -687,7 +704,9 @@ namespace Project
                 {
                     Console.WriteLine("Gefeliciteerd, je hebt het gehaald!");
                     CurrentGameState = GameState.GameOver;
-                }               
+                    ClearCoins();
+                    AddCoinsLevel1();
+                }
             }
         }
     }

@@ -41,7 +41,7 @@ namespace Project
             isVisible = true;
         }
 
-        public void Update(GameTime gameTime, SoundEffect soundEffect)
+        public virtual void Update(GameTime gameTime, SoundEffect soundEffect)
         {
             _position += _velocity;
             if(_position.X > _viewRect.Width / 3)

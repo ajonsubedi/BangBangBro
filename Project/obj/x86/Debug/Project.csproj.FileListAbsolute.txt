@@ -122,3 +122,15 @@ C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\G
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\key.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\background\bgLevel2.xnb
 C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\door.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\door.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\gotonextlevel.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\key.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\background\bgLevel2.xnb
+C:\Users\ajons\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\enemy\mainBoss.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\door.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\gotonextlevel.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\key.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\background\bgLevel2.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\Content\enemy\mainBoss.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\enemy\mainBoss.xnb
+C:\Users\Ajon Subedi\OneDrive - Artesis Plantijn Hogeschool Antwerpen\2de jaar\Game development\Project\Project\bin\Windows\x86\Debug\Content\fonts\finalScore.xnb
