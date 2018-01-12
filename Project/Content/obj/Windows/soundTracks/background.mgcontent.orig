@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<<<<<<< HEAD
   <SourceFile>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/soundTracks/background.mp3</SourceFile>
   <SourceTime>2017-11-07T20:37:46+01:00</SourceTime>
   <DestFile>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bin/Windows/soundTracks/background.xnb</DestFile>
-  <DestTime>2018-01-11T00:03:55.1787568+01:00</DestTime>
+  <DestTime>2018-01-12T21:53:09.232184+01:00</DestTime>
+=======
+  <SourceFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/soundTracks/background.mp3</SourceFile>
+  <SourceTime>2017-11-07T20:37:46.6100681+01:00</SourceTime>
+  <DestFile>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bin/Windows/soundTracks/background.xnb</DestFile>
+  <DestTime>2018-01-12T19:13:06.1750099+01:00</DestTime>
+>>>>>>> da8290dc7fae01c52d29984f71a015c919337390
   <Importer>Mp3Importer</Importer>
-  <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
+  <ImporterTime>2017-09-27T03:32:24+02:00</ImporterTime>
   <Processor>SongProcessor</Processor>
-  <ProcessorTime>2017-03-01T16:05:36+01:00</ProcessorTime>
+  <ProcessorTime>2017-09-27T03:32:24+02:00</ProcessorTime>
   <Parameters>
     <Key>Quality</Key>
     <Value>Best</Value>
@@ -15,6 +22,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>C:/Users/Ajon Subedi/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bin/Windows/soundTracks/background.wma</string>
+    <string>C:/Users/ajons/OneDrive - Artesis Plantijn Hogeschool Antwerpen/2de jaar/Game development/Project/Project/Content/bin/Windows/soundTracks/background.wma</string>
   </BuildOutput>
 </PipelineBuildEvent>

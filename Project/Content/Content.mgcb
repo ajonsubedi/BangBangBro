@@ -332,10 +332,3 @@
 /processorParam:TextureFormat=Color
 /build:tileSheet/tile2.png
 
-#begin fonts/finalScore.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:fonts/finalScore.spritefont
-
