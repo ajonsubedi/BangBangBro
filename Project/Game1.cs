@@ -20,8 +20,8 @@ namespace Project
 
         //Hier komen alle textures
         Texture2D heroRightTexture, heroLeftTexture; //Hero textures
-        Texture2D enemy1RightTexture, enemy1LeftTexture; //Enemy textures
-        Texture2D coinTexture, bulletTexture, ladderTexture, goToNextLevelTexture, keyTexture; //Other textures
+        Texture2D enemy1RightTexture; //Enemy textures
+        Texture2D coinTexture, bulletTexture, ladderTexture, goToNextLevelTexture, keyTexture, doorTexture; //Other textures
         Texture2D btnPlayTexture, btnInstructionTexture, btnBackTexture, btnPlayAgainTexture; //Button textures
         Texture2D backgroundTexture; //Background textures
         Texture2D healthBarRedTexture, healthBarGreenTexture, healthTexture; //HealthTextures
@@ -41,15 +41,17 @@ namespace Project
         Tile tile = new Tile();
         Background background;
         Ladder ladder;
-        List<Enemy> enemies = new List<Enemy>();
-        Sprite goToNextLevel;
-       Sprite key;
+        List<Enemy> enemiesLevel1 = new List<Enemy>();
+        List<Enemy> enemiesLevel2 = new List<Enemy>();
+        Sprite goToLevel2, key, restoreHealth; //extra sprites
+        Door door;
 
         //Hier komen alle variabelen
         static Score score;
         static SpriteFont scoreFont;
         static Vector2 scorePos;
         int screenWidth = 1920, screenHeight = 1050;
+        int keyValue = 0;
 
 
 
@@ -162,10 +164,9 @@ namespace Project
 
             //ENEMY
             enemy1RightTexture = Content.Load<Texture2D>("enemy/enemyRight");
-            enemy1LeftTexture = Content.Load<Texture2D>("enemy/enemyleft");
 
-            enemies.Add(new Enemy(enemy1RightTexture, new Vector2(510, 0)));
-            enemies.Add(new Enemy(enemy1RightTexture, new Vector2(1130, 0)));
+            enemiesLevel1.Add(new Enemy(enemy1RightTexture, new Vector2(510, 0)));
+            enemiesLevel1.Add(new Enemy(enemy1RightTexture, new Vector2(1130, 0)));
 
 
             //COIN
@@ -186,7 +187,7 @@ namespace Project
 
             //Go to next level
             goToNextLevelTexture = Content.Load<Texture2D>("gotonextlevel");
-            goToNextLevel = new Sprite(goToNextLevelTexture, new Vector2(1800, 697));
+            goToLevel2 = new Sprite(goToNextLevelTexture, new Vector2(1800, 697));
 
 
 
@@ -201,7 +202,7 @@ namespace Project
 
 
             //BACKGROUND
-            backgroundTexture = Content.Load<Texture2D>("background/bgNormal");
+            backgroundTexture = Content.Load<Texture2D>("background/bgLevel2");
             background = new Background(backgroundTexture, new Vector2(GraphicsDevice.Viewport.X, GraphicsDevice.Viewport.Y
                 ), new Rectangle(GraphicsDevice.Viewport.X, GraphicsDevice.Viewport.Y, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
 
@@ -225,10 +226,12 @@ namespace Project
             keyTexture = Content.Load<Texture2D>("key");
             key = new Sprite(keyTexture, new Vector2(0, 1500));
 
+            //RESTORE HEALTH
+            restoreHealth = new Sprite(healthTexture, new Vector2(0, 1500));
 
-            //keys[0]._position.X = heroRight._position.X;
-            //keys[0]._position.Y = 0;
-            //keys[0].isVisible = true;
+            //DOOR
+            doorTexture = Content.Load<Texture2D>("door");
+            door = new Door(doorTexture, new Vector2(0, 1500));
 
             // TODO: use this.Content to load your game content here
         }
@@ -277,12 +280,12 @@ namespace Project
             Collision(gameTime);
             ChangingGameState();
             TurnOffSoundOnLadder();
-            enemies[0].MoveEnemyAround(780, 510);
-            enemies[1].MoveEnemyAround(1330, 1130);
+            enemiesLevel1[0].MoveEnemyAround(780, 510);
+            enemiesLevel1[1].MoveEnemyAround(1330, 1130);
             ShootRight();
             foreach (Bullet bullet in bullets) //update voor bullet
             {
-                enemies[0].GetDamage(bullet._rectangle);
+                enemiesLevel1[0].GetDamage(bullet._rectangle);
                 bullet.Update(graphics);
             }
 
@@ -295,11 +298,13 @@ namespace Project
                 }
             }
            // key.hasDisapeard = true;
-            if (heroRight._viewRect.Intersects(goToNextLevel._rectangle))
+            if (heroRight._viewRect.Intersects(goToLevel2._rectangle))
             {
-                GoToNextLevel();
+                GoToLevel2();
             }
             GetKey();
+            GetHealth();
+            EndGame();
             
             base.Update(gameTime);
         }
@@ -353,7 +358,7 @@ namespace Project
 
                     }
 
-                    foreach (Enemy enemy in enemies)
+                    foreach (Enemy enemy in enemiesLevel1)
                     {
                         enemy.Draw(spriteBatch, SpriteEffects.FlipHorizontally);
                     }
@@ -370,10 +375,10 @@ namespace Project
                     spriteBatch.Draw(healthBarRedTexture, healthBarRedRect, Color.White);
                     spriteBatch.Draw(healthBarGreenTexture, healthBarGreenRect, Color.White);
                     spriteBatch.Draw(healthTexture, new Rectangle((int)heroRight._position.X + 115, 0, 30, 30), Color.White);
-                    goToNextLevel.Draw(spriteBatch);
-                    
-                        key.Draw(spriteBatch);
-                    
+                    goToLevel2.Draw(spriteBatch);
+                    key.Draw(spriteBatch);
+                    restoreHealth.Draw(spriteBatch);
+                    door.Draw(spriteBatch);
                     break;
                 case GameState.Instructions:
                     spriteBatch.Draw(Content.Load<Texture2D>("background/instructionPage"), new Rectangle(-175, 0, screenWidth, screenHeight), Color.White);
@@ -410,7 +415,7 @@ namespace Project
 
         public void UpdateEnemy(GameTime gameTime)   //Hiermee wordt de enemy geupdate, en de health van de hero daalt als er een collision is met de enemy
         {
-            foreach (Enemy enemy in enemies)
+            foreach (Enemy enemy in enemiesLevel1)
             {
                 enemy.Update(gameTime, soundEffect);
                 if (heroRight._viewRect.Intersects(enemy._viewRect))
@@ -421,7 +426,7 @@ namespace Project
             }
         }
 
-        public void GoToNextLevel()
+        public void GoToLevel2()
         {
             Console.WriteLine("volgende level begiint");
             heroRight._position = Vector2.Zero;
@@ -432,6 +437,21 @@ namespace Project
             AddCoinsLevel2();
             ladder.isVisible = false;
             key = new Sprite(keyTexture, new Vector2(685, 95));
+            restoreHealth = new Sprite(healthTexture, new Vector2(750, 95));
+            enemiesLevel1.Clear();
+            enemiesLevel1.Add(new Enemy(enemy1RightTexture, new Vector2(510, 0)));
+            enemiesLevel1.Add(new Enemy(enemy1RightTexture, new Vector2(1130, 0)));
+            enemiesLevel1[0].isVisible = false;
+            enemiesLevel1[1].isVisible = false;
+            enemiesLevel2.Add(new Enemy(enemy1RightTexture, new Vector2(510, 0)));
+            enemiesLevel2[0].MoveEnemyAround(780, 510);
+            door = new Door(doorTexture, new Vector2(1770, 600));
+
+
+
+
+
+
 
         }
 
@@ -442,6 +462,14 @@ namespace Project
             heroRight._position = Vector2.Zero;
             heroLeft._position = Vector2.Zero;
             key.hasDisapeard = true;
+            restoreHealth.hasDisapeard = true;
+            enemiesLevel1[0]._position.Y = 0;
+            enemiesLevel1[1]._position.Y = 0;
+            door.hasDisapeard = true;
+            ladder.isVisible = true;
+            enemiesLevel1[0].isVisible = true;
+            enemiesLevel1[1].isVisible = true;
+
         }
 
 
@@ -465,7 +493,7 @@ namespace Project
             {
                 heroRight.Collision(tile.Rectangle, map.Width, map.Height);
                 heroLeft.Collision(tile.Rectangle, map.Width, map.Height);
-                foreach (Enemy enemy in enemies)
+                foreach (Enemy enemy in enemiesLevel1)
                 {
                     enemy.Collision(gameTime, tile.Rectangle, map.Width, map.Height);
                 }
@@ -515,10 +543,14 @@ namespace Project
                     btnBack.Update(mouse);
                     break;
                 case GameState.GameOver:
-                    if (btnPlayAgain.isClicked == true) CurrentGameState = GameState.Playing;
-                    btnPlayAgain.Update(mouse);
+                    if (btnPlayAgain.isClicked == true)
+                    {
+                        CurrentGameState = GameState.Playing;
+                        map.ClearMap();
+                        map.DrawLevel1();
+                    }
                     Reset();
-
+                    btnPlayAgain.Update(mouse);
                     break;
             }
         }
@@ -632,11 +664,33 @@ namespace Project
             {
                 Console.WriteLine("hero raakt key");
                 key.hasDisapeard = true;
-            }
-            
-                
+                keyValue = 1;
+            }       
         }
-   }
+
+        public void GetHealth()
+        {
+            if (heroRight._viewRect.Intersects(restoreHealth._rectangle))
+            {
+                Console.WriteLine("hero raakt extra health");
+                restoreHealth.hasDisapeard = true;
+                heroRight.health = 100;
+            }
+        }
+
+        public void EndGame()
+        {
+            if (heroRight._viewRect.Intersects(door._rectangle))
+            {
+                Console.WriteLine("hero raakt de deur");
+                if(keyValue == 1)
+                {
+                    Console.WriteLine("Gefeliciteerd, je hebt het gehaald!");
+                    CurrentGameState = GameState.GameOver;
+                }               
+            }
+        }
+    }
 }
 
 
